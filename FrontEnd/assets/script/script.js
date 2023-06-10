@@ -1,13 +1,14 @@
 /** ajouts des boutons filtres */
 // Création de la div "filtres"
+
 let divFiltres = document.createElement("div");
 divFiltres.setAttribute("id", "filtres");
 
 divFiltres.innerHTML = `
-  <button class="active">Tous</button>
-  <button>Objets</button>
-  <button>Appartements</button>
-  <button>Hotels & Restaurants</button>
+  <button id="0" class="active" >Tous</button>
+  <button id="1" >Objets</button>
+  <button id="2" >Appartements</button>
+  <button id="3">Hotels & Restaurants</button>
 `;
 
 const sectionPortfolio = document.getElementById("portfolio");
@@ -21,6 +22,7 @@ h2Element.appendChild(divFiltres);
   la requête soit résolue à chaque étapes.
   "await" ne peut être utilisé que dans une fonction "async" */
 
+
 /* fonction pour récupérer les données */
 
 async function getworks(){
@@ -30,14 +32,14 @@ async function getworks(){
     works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
 }
 
+
 /**--- remplir la galerie ----*/
 
 // Sélection du 1er élément HTML de la class 'gallery'
-
 const gallery = document.querySelector(".gallery"); 
 
-// fonction pour afficher les données dans la galerie
 
+// fonction pour afficher les données dans la galerie
 async function showWorks(){ 
    
     await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
@@ -56,4 +58,8 @@ async function showWorks(){
 // Appel de la fonction 'showWorks' pour afficher les donnees dans la galerie
 
 showWorks();
+
+/* fonction add */
+
+
 
