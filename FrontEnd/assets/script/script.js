@@ -1,7 +1,7 @@
 
 /*   INFO   "await" est utilisé pour attendre que 
-  la requête soit résolue à chaque étapes 
-  il ne peut être utilisé que dans une fonction "async" */
+  la requête soit résolue à chaque étapes.
+  "await" ne peut être utilisé que dans une fonction "async" */
 
 /* fonction pour récupérer les données */
 
