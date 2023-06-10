@@ -1,3 +1,21 @@
+/** ajouts des boutons filtres */
+// Création de la div "filtres"
+let divFiltres = document.createElement("div");
+divFiltres.setAttribute("id", "filtres");
+
+divFiltres.innerHTML = `
+  <button class="active">Tous</button>
+  <button>Objets</button>
+  <button>Appartements</button>
+  <button>Hotels & Restaurants</button>
+`;
+
+const sectionPortfolio = document.getElementById("portfolio");
+const h2Element = sectionPortfolio.querySelector("h2");
+
+h2Element.appendChild(divFiltres);
+
+
 
 /*   INFO   "await" est utilisé pour attendre que 
   la requête soit résolue à chaque étapes.
@@ -38,3 +56,4 @@ async function showWorks(){
 // Appel de la fonction 'showWorks' pour afficher les donnees dans la galerie
 
 showWorks();
+
