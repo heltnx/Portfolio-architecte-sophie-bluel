@@ -52,7 +52,7 @@ sectionPortfolio.insertBefore(divFiltres, baliseh2.nextSibling); // insère la d
 function categories(event) {
   const categoryId = event.target.id; // Récupère l'ID de la catégorie cliquée
  
-// les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
+// récupère les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
   const categorie = works.filter(element => element.categoryId == categoryId || categoryId == 0);  
     
   // Générer le contenu HTML pour les éléments filtrés
