@@ -47,6 +47,7 @@ const baliseh2 = sectionPortfolio.querySelector("h2"); // selectione l'element a
 sectionPortfolio.insertBefore(divFiltres, baliseh2.nextSibling); // insère la div filtres après le "h2" dans le HTML
 
 
+
 /**  Filtrer au click sur les boutons -----------------------------------*/
 
 function categories(event) {
@@ -63,8 +64,15 @@ function categories(event) {
 
   // Mettre à jour le contenu de la galerie avec les éléments filtrés
   gallery.innerHTML = galleryHTML;
+
+  // Met à jour l'affichage des boutons actifs
+  const buttons = divFiltres.getElementsByTagName("button");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.toggle("active", buttons[i] === event.target);
+  }
   
 }
+
 
 /**  Actions à executer ------------------------------------------------*/
 
