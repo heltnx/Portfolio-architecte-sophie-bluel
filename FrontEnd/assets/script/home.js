@@ -44,7 +44,7 @@ divFiltres.innerHTML = `
 // affichage de la div "filtres" avec les boutons, dans le html
 const sectionPortfolio = document.getElementById("portfolio"); // seletione la section html
 const baliseh2 = sectionPortfolio.querySelector("h2"); // selectione l'element au dessus de la div à insérer (h2)
-baliseh2.appendChild(divFiltres); // ajoute la div filtres au dessous du "h2" dans le html
+sectionPortfolio.insertBefore(divFiltres, baliseh2.nextSibling); // insère la div filtres après le "h2" dans le HTML
 
 
 /**  Filtrer au click sur les boutons -----------------------------------*/

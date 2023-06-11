@@ -127,7 +127,8 @@ li:hover {
 }
 
 #filtres {
-	margin-top: 1.5em;
+	margin: 50px 0;
+	text-align: center;
 }
 
 #filtres button {
