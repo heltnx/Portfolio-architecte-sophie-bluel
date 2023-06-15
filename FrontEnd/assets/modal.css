@@ -1,4 +1,4 @@
-.modal{
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,13 +8,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fadeIn .3s both;
 }
-.modal-contain{
+
+.modal-contain {
     width: 630px;
     height: 731px;
     background: #FFFFFF;
     border-radius: 10px;
     overflow: auto;
-    margin-top: 100px;
-    z-index: 2;
+    max-width: calc(100vw - 120px);
+    max-height: calc(100vh - 300px);
+    animation: slideFromTop .3s both;
+}
+
+@keyframes slideFromTop {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }

@@ -60,7 +60,7 @@ body {
 	display: none;
 }
 .modification-active{
-	display: block;
+	display: flex;
 }
 #edition {
 	padding: 10px;
