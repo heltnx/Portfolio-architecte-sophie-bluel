@@ -13,6 +13,12 @@
     };
   
     // Effectue une requête Fetch en utilisant la méthode POST
+    function open_edition() {
+      const elements = document.querySelectorAll("body .modification");
+      elements.forEach(element => {
+        element.classList.replace('modification', 'modification-active');
+      });
+    }
     fetch('http://localhost:5678/api/users/login', {
       method: 'POST',
       headers: {
@@ -22,9 +28,13 @@
     })
     .then(response => {
       // Traite la réponse du serveur
+     
       if (response.ok) { //connection reussie !!!
-        alert('connection reussie.');// window.location.href = 'index.html';//redirige vers la page d'acceuil
+       open_edition()
+       window.location.href = 'index.html';//redirige vers la page d'
+
       } else {
+        
         alert('Échec de la connexion.');
       }
     })

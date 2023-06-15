@@ -15,6 +15,7 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="./assets/modal.css">
 </head>
 
 <body>
@@ -22,6 +23,9 @@
 		<span><i class="fa-sharp fa-regular fa-pen-to-square"></i>Mode édition</span>
 		<button>publier les changements</button>
 	</div>
+	<aside id="modal1" class="modal" aria-hidden="true" role="editier" style="display: none;">
+		<div class="modal-contain"></div>
+	</aside>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -49,12 +53,12 @@
 					décorateur(trice)</p>
 			</article>
 		</section>
-		<div class="modification modif"><i class="fa-sharp fa-regular fa-pen-to-square"></i>Modifier</div>
+		<div class="modification modif js-modal"><a href="#modal1"><i class="fa-sharp fa-regular fa-pen-to-square"></i>Modifier</a>
+		</div>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
 			<!-- elements affichés dynamiquement -->
 			<div class="gallery"></div>
-
 		</section>
 		<section id="contact">
 			<h2>Contact</h2>
@@ -78,7 +82,11 @@
 			</ul>
 		</nav>
 	</footer>
+	
+	<script src="assets/script/login.js"></script>
 	<script src="assets/script/home.js"></script>
+	<script src="assets/script/modal.js"></script>
+	
 </body>
 
 </html>

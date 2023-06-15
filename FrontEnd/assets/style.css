@@ -59,7 +59,9 @@ body {
 .modification{
 	display: none;
 }
-
+.modification-active{
+	display: block;
+}
 #edition {
 	padding: 10px;
 	position: fixed;
