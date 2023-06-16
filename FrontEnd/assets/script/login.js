@@ -12,13 +12,6 @@
       password
     };
   
-    /** ouvrir la page avec le bandeau edition si login ok */
-    function open_edition() {
-      const elements = document.querySelectorAll("body .modification");
-      elements.forEach(element => {
-        element.classList.replace('modification', 'modification-active');
-      });
-    }
     // requête Fetch méthode POST
       fetch('http://localhost:5678/api/users/login', {
         method: 'POST', 
@@ -30,7 +23,9 @@
         .then(response => { // Traite la réponse du serveur
 
           if (response.ok) { //si connection reussie !!!
-            open_edition(); // function replace modification "active"
+            // Localstorage element
+            localStorage.setItem("connected", "connected");
+          
             window.location.href = 'index.html';//redirige vers la page d'
 
           } else { // si non,

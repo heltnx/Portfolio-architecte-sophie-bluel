@@ -1,10 +1,14 @@
 /**  afficher tous les elements dans la galerie ---------------------------*/
 
 // récupérer les données dans l'api
+
+
 async function getworks(){
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
 }
+
+
 
 //fonction pour générer le modèle HTML d'un élément
 function genererHTML(element) {
@@ -15,6 +19,19 @@ function genererHTML(element) {
     </figure>
   `;
 }
+  /** ouvrir la page avec le bandeau edition si login ok */
+  function open_edition() {
+    const connected = localStorage.getItem("connected");
+      const elements = document.querySelectorAll(".modification");
+      elements.forEach(element => {  
+      
+        if (connected == "connected"){
+        element.classList.add('modification-active');
+        } else {
+        element.classList.remove('modification-active');
+        }
+      }); 
+    } 
 
 // fonction pour afficher les données dans la galerie
 const gallery = document.querySelector(".gallery"); // Sélection du 1er élément HTML de la class 'gallery'
@@ -75,6 +92,8 @@ function categories(event) {
 
 
 /**  Actions à executer ------------------------------------------------*/
+
+open_edition(); // function replace modification "active"
 
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
