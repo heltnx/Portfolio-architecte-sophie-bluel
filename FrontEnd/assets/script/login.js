@@ -12,34 +12,33 @@
       password
     };
   
-    // Effectue une requête Fetch en utilisant la méthode POST
+    /** ouvrir la page avec le bandeau edition si login ok */
     function open_edition() {
       const elements = document.querySelectorAll("body .modification");
       elements.forEach(element => {
         element.classList.replace('modification', 'modification-active');
       });
     }
-    fetch('http://localhost:5678/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      // Traite la réponse du serveur
-     
-      if (response.ok) { //connection reussie !!!
-       open_edition()
-       window.location.href = 'index.html';//redirige vers la page d'
+    // requête Fetch méthode POST
+      fetch('http://localhost:5678/api/users/login', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => { // Traite la réponse du serveur
 
-      } else {
-        
-        alert('Échec de la connexion.');
-      }
-    })
-    .catch(error => {
-      console.log('Une erreur s\'est produite :', error);
+          if (response.ok) { //si connection reussie !!!
+            open_edition(); // function replace modification "active"
+            window.location.href = 'index.html';//redirige vers la page d'
+
+          } else { // si non,
+
+            alert('Échec de la connexion.');
+          }
+        })
+        .catch(error => {
+          console.log('Une erreur s\'est produite :', error);
+        });
     });
-  });
-  
