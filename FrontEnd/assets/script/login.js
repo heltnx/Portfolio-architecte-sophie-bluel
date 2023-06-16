@@ -1,4 +1,5 @@
-    //cibler le formulaire
+   
+   //cibler le formulaire
     document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Empêche la soumission du formulaire
   

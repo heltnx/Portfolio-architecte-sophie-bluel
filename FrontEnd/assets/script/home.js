@@ -1,14 +1,9 @@
-/**  afficher tous les elements dans la galerie ---------------------------*/
 
-// récupérer les données dans l'api
-
-
-async function getworks(){
+// fonction pour récupérer les données dans l'api
+async function getworks() {
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
 }
-
-
 
 //fonction pour générer le modèle HTML d'un élément
 function genererHTML(element) {
@@ -19,30 +14,31 @@ function genererHTML(element) {
     </figure>
   `;
 }
-  /** ouvrir la page avec le bandeau edition si login ok */
-  function open_edition() {
-    const connected = localStorage.getItem("connected");
-      const elements = document.querySelectorAll(".modification");
-      elements.forEach(element => {  
-      
-        if (connected == "connected"){
-        element.classList.add('modification-active');
-        } else {
-        element.classList.remove('modification-active');
-        }
-      }); 
-    } 
+
+// fonction ouvrir la page avec le bandeau edition si login ok
+function open_edition() {
+  const connected = localStorage.getItem("connected");
+  const elements = document.querySelectorAll(".modification");
+  elements.forEach(element => {
+
+    if (connected == "connected") {
+      element.classList.add('modification-active');
+    } else {
+      element.classList.remove('modification-active');
+    }
+  });
+}
 
 // fonction pour afficher les données dans la galerie
 const gallery = document.querySelector(".gallery"); // Sélection du 1er élément HTML de la class 'gallery'
 
-async function showWorks(){ 
-   
-    await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
-    works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-        gallery.innerHTML += genererHTML(element) // Génére le contenu HTML pour chaque element
-      
-    });
+async function showWorks() {
+
+  await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
+  works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
+    gallery.innerHTML += genererHTML(element) // Génére le contenu HTML pour chaque element
+
+  });
 }
 
 /** ajouts des boutons filtres ----------------------------------------------*/
@@ -69,12 +65,12 @@ sectionPortfolio.insertBefore(divFiltres, baliseh2.nextSibling); // insère la d
 
 function categories(event) {
   const categoryId = event.target.id; // Récupère l'ID de la catégorie cliquée
- 
-// récupère les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
-  const categorie = works.filter(element => element.categoryId == categoryId || categoryId == 0);  
-    
+
+  // récupère les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
+  const categorie = works.filter(element => element.categoryId == categoryId || categoryId == 0);
+
   // Générer le contenu HTML pour les éléments filtrés
-    let galleryHTML = ""; // initialise un tableau vide
+  let galleryHTML = ""; // initialise un tableau vide
   categorie.forEach(element => { // Parcourt les éléments filtrés 
     galleryHTML += genererHTML(element) // génère le contenu HTML correspondant à chaque élément.
   });
@@ -87,7 +83,7 @@ function categories(event) {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.toggle("active", buttons[i] === event.target);
   }
-  
+
 }
 
 
