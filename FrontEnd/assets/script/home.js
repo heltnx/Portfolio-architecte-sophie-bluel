@@ -28,7 +28,11 @@ function open_edition() {
     }
   });
 }
-
+function close_edition() {
+   window.addEventListener('beforeunload', function() {
+    localStorage.removeItem("connected");
+  });
+}
 // fonction pour afficher les données dans la galerie
 const gallery = document.querySelector(".gallery"); // Sélection du 1er élément HTML de la class 'gallery'
 
@@ -90,7 +94,7 @@ function categories(event) {
 /**  Actions à executer ------------------------------------------------*/
 
 open_edition(); // function replace modification "active"
-
+close_edition()
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
 
