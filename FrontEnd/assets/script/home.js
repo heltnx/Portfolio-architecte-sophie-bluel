@@ -87,14 +87,29 @@ function categories(event) {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.toggle("active", buttons[i] === event.target);
   }
-
 }
 
+ // Met à jour le lien "login/logout"
+function changelogin() {
+  const loginLink = document.getElementById("login-link");
+  const connected = localStorage.getItem("connected");
+
+  if (connected === "connected") {
+    loginLink.innerText = "Logout";
+  } else {
+    loginLink.innerText = "Login";
+  }
+}
 
 /**  Actions à executer ------------------------------------------------*/
 
-open_edition(); // function replace modification "active"
+//appel function "changelogin" passe sur "logout" sur "storage connected"
+window.addEventListener("load", changelogin); // au chargement de la page
+window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
+
+open_edition(); // appel function replace modification "active"
 close_edition()
+
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
 

@@ -51,10 +51,10 @@ body {
 }
 
 nav li{
-    font-size: 'Work Sans';
+    font-size: inherit;
     font-style: normal;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
 }
 footer{
     position: absolute;
