@@ -22,6 +22,16 @@
     animation: slideFromTop .3s both;
 }
 
+.modal button {
+    cursor: pointer;
+    font-size: 18px;
+    background: transparent;
+    border: transparent;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+}
+
 @keyframes slideFromTop {
     0% {
         transform: translateY(-50px);
