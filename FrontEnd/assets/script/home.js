@@ -1,4 +1,4 @@
-
+const lienActif = document.location.href;
 // fonction pour récupérer les données dans l'api
 async function getworks() {
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données

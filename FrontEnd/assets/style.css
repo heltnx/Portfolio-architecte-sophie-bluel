@@ -112,7 +112,7 @@ h1{
 	color: #B1663C
 }
 
-h1 > span {
+h1 span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
@@ -135,9 +135,10 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
-	color: #B1663C;
+li:hover, #projets{
+	font-weight: bold;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
