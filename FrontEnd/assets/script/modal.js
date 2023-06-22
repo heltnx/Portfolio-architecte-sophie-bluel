@@ -45,19 +45,20 @@ const close_modal = function(event){
 const divModalGallery = document.createElement("div");
 divModalGallery.setAttribute("class", "modal-gallery");
 divModalGallery.innerHTML = ` 
-    <section class="modal2" class="modal-contain" class="gallery">
+    <section class="modal2 modal-contain class="gallery">
         <h2>Galerie Photo</h2>
         <div class="gallery-edit"></div>
         <hr>
-        <button id="ajouter">Ajouter une photo</button> <!-- Bouton Ajouter dans la première fenêtre modale -->
+        <button id="ajouter">Ajouter une photo</button>
+        <span id="supprimer">Supprimer la galerie</span>
     </section>
 `;
 
 const divModalAjout = document.createElement("div");
-divModalAjout.setAttribute("class", "modal-gallery");
+divModalAjout.setAttribute("class", "modal-gallery ajout");
 divModalAjout.innerHTML = ` 
-    <section class="modal-gallery" class="modal-contain" class="gallery">
-        <span class="back-icon" id="retour">&#8592;</span> <!-- Icône de "flèche retour" -->
+    <section class="modal-gallery modal-contain" >
+    <img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
         <h2>Ajout Photo</h2>
         <div class="picture">
             <img src="./assets/icons/picture.png" alt="modèle picture">
@@ -69,43 +70,33 @@ divModalAjout.innerHTML = `
     </section>
 `;
 
+/*---------gestionnaire d'évènements au click sur la modale--------- */
+
 const asideModale = document.querySelector(".modal-contain");
 asideModale.appendChild(divModalGallery);
 
 // Variable pour suivre l'état de la fenêtre modale actuellement affichée
 let currentModal = "gallery";
 
-// Gestionnaire d'événement pour le bouton "Modifier" (à l'extérieur de la fenêtre modale)
+// click sur bouton "Modifier" (à l'extérieur de la fenêtre modale)
 document.getElementById("modifier").addEventListener("click", function() {
-    currentModal = "gallery"; // Met à jour l'état de la fenêtre modale
-    divModalGallery.style.display = "block"; // Affiche la première fenêtre modale
+    currentModal = "gallery"; // Met à jour l'état de la modale
+    divModalGallery.style.display = "block"; // Affiche la première modale
 });
 
-// Gestionnaire d'événement pour le bouton "Ajouter" dans la première fenêtre modale
+// click sur le bouton "Ajouter" dans la première modale
 document.getElementById("ajouter").addEventListener("click", function() {
-    currentModal = "ajout"; // Met à jour l'état de la fenêtre modale
-    asideModale.removeChild(divModalGallery); // Supprime la première fenêtre modale
-    asideModale.appendChild(divModalAjout); // Ajoute la deuxième fenêtre modale
+    currentModal = "ajout"; // Met à jour l'état de la modale
+    asideModale.removeChild(divModalGallery); // Supprime la première modale
+    asideModale.appendChild(divModalAjout); // Ajoute la deuxième modale
 });
 
-// Gestionnaire d'événement pour les clics dans l'élément parent de la fenêtre modale
+// click sur la flêche "retour" de la deuxieme modale
 asideModale.addEventListener("click", function(event) {
     if (event.target.id === "retour") {
-        currentModal = "gallery"; // Met à jour l'état de la fenêtre modale
-        asideModale.removeChild(divModalAjout); // Supprime la deuxième fenêtre modale
-        asideModale.appendChild(divModalGallery); // Ajoute la première fenêtre modale
+        currentModal = "gallery"; // Met à jour l'état de la modale
+        asideModale.removeChild(divModalAjout); // Supprime la deuxième modale
+        asideModale.appendChild(divModalGallery); // Ajoute la première modale
     }
 });
 
-// Gestionnaire d'événement pour la fermeture de la fenêtre modale
-window.addEventListener("click", function(event) {
-    if (event.target === asideModale) {
-        if (currentModal === "ajout") {
-            currentModal = "gallery"; // Met à jour l'état de la fenêtre modale
-            asideModale.removeChild(divModalAjout); // Supprime la deuxième fenêtre modale
-            asideModale.appendChild(divModalGallery); // Ajoute la première fenêtre modale
-        } else {
-            divModalGallery.style.display = "none"; // Masque la première fenêtre modale
-        }
-    }
-});
