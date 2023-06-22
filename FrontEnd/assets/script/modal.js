@@ -43,21 +43,18 @@ const close_modal = function(event){
 /*--------------contenu des modales------------------------------------*/
 
 const divModalGallery = document.createElement("div");
-divModalGallery.setAttribute("class", "modal-gallery");
+divModalGallery.setAttribute("class", "modal-gallery modal2 modal-contain gallery");
 divModalGallery.innerHTML = ` 
-    <section class="modal2 modal-contain class="gallery">
         <h2>Galerie Photo</h2>
         <div class="gallery-edit"></div>
         <hr>
         <button id="ajouter">Ajouter une photo</button>
         <span id="supprimer">Supprimer la galerie</span>
-    </section>
 `;
 
 const divModalAjout = document.createElement("div");
-divModalAjout.setAttribute("class", "modal-gallery ajout");
+divModalAjout.setAttribute("class", "modal-gallery ajout modal-contain");
 divModalAjout.innerHTML = ` 
-    <section class="modal-gallery modal-contain" >
     <img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
         <h2>Ajout Photo</h2>
         <div class="picture">
@@ -67,7 +64,6 @@ divModalAjout.innerHTML = `
         </div>
         <hr>
         <button id="action">Valider</button>
-    </section>
 `;
 
 /*---------gestionnaire d'évènements au click sur la modale--------- */
