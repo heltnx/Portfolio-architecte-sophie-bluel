@@ -2,7 +2,7 @@
 let modal = null; // initialise la variable 'modal' à null (fermée)
 
 // Fonction pour ouvrir la modale
-const open_modal = function(event){
+const open_modal = function (event) {
     event.preventDefault();
     const target = document.querySelector(event.target.getAttribute('href')); // selectionne la modale "cible" à partir de l'attribut href du lien cliqué (#modal1)
     target.style.display = null; //definit la modale avec une valeur par défaut à "null" (enlève le "display none")
@@ -15,17 +15,17 @@ const open_modal = function(event){
     modal.addEventListener('click', close_modal); // au click "fermer la modale" 
 
     modal.querySelector('.js-modal-close').addEventListener('click', close_modal); // au click sur le bouton "fermer la modale"
-    
-    modal.querySelector('.modal-contain').addEventListener('click', function(event) { 
-    event.stopPropagation(); // au click dans le conteneur de la modale
 
-    event.stopPropagation(); // Arrête la propagation du click "fermer la modale" à l'interieur de la modale
-});
+    modal.querySelector('.modal-contain').addEventListener('click', function (event) {
+        event.stopPropagation(); // au click dans le conteneur de la modale
+
+        event.stopPropagation(); // Arrête la propagation du click "fermer la modale" à l'interieur de la modale
+    });
 }
 
 // Fonction pour "fermer la modale"
-const close_modal = function(event){
-    if (modal === null) return ; // Si la variable 'modal' est null, elle est déjà fermée, on ne fait rien.
+const close_modal = function (event) {
+    if (modal === null) return; // Si la variable 'modal' est null, elle est déjà fermée, on ne fait rien.
     event.preventDefault();
     modal.style.display = "none"; // rend la modale invisible
     modal.setAttribute('aria-hidden', true); // Ajoute aria-hidden = true pour cacher la modale aux lecteurs d'écran
@@ -35,9 +35,9 @@ const close_modal = function(event){
     modal = null; // Réinitialise la variable 'modal' à null
 }
 
- /* action ouvrir la modale au click sur un lien de cette classe */
-    document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les éléments avec la classe 'js-modal'
-    a.addEventListener("click", open_modal); 
+/* action ouvrir la modale au click sur un lien de cette classe */
+document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les éléments avec la classe 'js-modal'
+    a.addEventListener("click", open_modal);
 });
 
 /*--------------contenu des modales------------------------------------*/
@@ -62,8 +62,14 @@ divModalAjout.innerHTML = `
             <button id="picture-ajout">+ Ajouter photo</button>
             <span>jpg, png : 4mo max</span>
         </div>
-        <hr>
-        <button id="action">Valider</button>
+        <form>
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" name="titre">
+            <label for="category">Catégorie</label>
+            <input type="text" id="form-category" name="category">
+            <hr>
+            <button id="submit">Valider</button>
+        </form>
 `;
 
 /*---------gestionnaire d'évènements au click sur la modale--------- */
@@ -75,20 +81,20 @@ asideModale.appendChild(divModalGallery);
 let currentModal = "gallery";
 
 // click sur bouton "Modifier" (à l'extérieur de la fenêtre modale)
-document.getElementById("modifier").addEventListener("click", function() {
+document.getElementById("modifier").addEventListener("click", function () {
     currentModal = "gallery"; // Met à jour l'état de la modale
     divModalGallery.style.display = "block"; // Affiche la première modale
 });
 
 // click sur le bouton "Ajouter" dans la première modale
-document.getElementById("ajouter").addEventListener("click", function() {
+document.getElementById("ajouter").addEventListener("click", function () {
     currentModal = "ajout"; // Met à jour l'état de la modale
     asideModale.removeChild(divModalGallery); // Supprime la première modale
     asideModale.appendChild(divModalAjout); // Ajoute la deuxième modale
 });
 
 // click sur la flêche "retour" de la deuxieme modale
-asideModale.addEventListener("click", function(event) {
+asideModale.addEventListener("click", function (event) {
     if (event.target.id === "retour") {
         currentModal = "gallery"; // Met à jour l'état de la modale
         asideModale.removeChild(divModalAjout); // Supprime la deuxième modale

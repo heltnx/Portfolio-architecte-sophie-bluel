@@ -8,8 +8,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeIn .3s both;
+    animation: fadeIn 0.3s both;
 }
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 .modal-contain {
     width: 630px;
@@ -18,13 +27,14 @@
     border-radius: 10px;
     overflow: auto;
     max-width: calc(100vw - 120px);
-    max-height: calc(100vh - 300px);
+    max-height: calc(100vh - 250px);
     animation: slideFromTop .3s both;
 }
 
 @keyframes slideFromTop {
     0% {
         transform: translateY(-50px);
+        
     }
 
     100% {
@@ -49,16 +59,17 @@
 /* contenu modale gelerie photo */
 /*------------------------------*/
 
-.modal-gallery{
+.modal-gallery {
     text-align: center;
     min-width: fit-content;
     margin: 0 auto;
 }
-.gallery-edit{
+
+.gallery-edit {
     width: 70%;
 }
 
-.modal-gallery h2{
+.modal-gallery h2 {
     font-family: 'Work Sans';
     font-style: normal;
     font-weight: 400;
@@ -69,7 +80,8 @@
     padding-top: 60px;
     padding-bottom: 25px;
 }
-hr{
+
+hr {
     width: 70%;
     height: 0;
     border: 1px solid #969696;
@@ -77,43 +89,44 @@ hr{
     margin-bottom: 50px;
 }
 
-.modal-gallery button{
+.modal-gallery button {
     cursor: pointer;
-	font-family: Syne;
-	font-size: 16px;
-	font-weight: 700;
-	line-height: 19px;
-	letter-spacing: 0em;
-	color: white;
-	background-color: #1D6154;
-	text-align: center;
-	border: 1px solid #1D6154;
-	border-radius: 60px;
-	padding: 8px 35px;
+    font-family: Syne;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: white;
+    background-color: #1D6154;
+    text-align: center;
+    border: 1px solid #1D6154;
+    border-radius: 60px;
+    padding: 8px 35px;
 }
+
 #supprimer {
     cursor: pointer;
- display: block;
- margin: 25px;
- font-family: 'Syne';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-color: #D65353;
+    display: block;
+    margin: 25px;
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #D65353;
 }
 
 /*---modal ajout------*/
 
-#retour{
+#retour {
     cursor: pointer;
     position: absolute;
     top: 25px;
     left: 30px;
 }
 
-.picture{
+.picture {
     background: rgba(232, 241, 246, 1);
     width: 420px;
     height: 169px;
@@ -125,27 +138,79 @@ color: #D65353;
     align-items: center;
     padding: 10px 0;
     margin: auto;
+    margin-bottom: 20px;
 }
-.picture img{
+
+.picture img {
     width: min-content;
 }
 
-#picture-ajout{
-   background: rgba(203, 214, 220, 1);
-   border: transparent;
-   color: rgba(48, 102, 133, 1);
-   font-family: Work Sans;
-font-size: 14px;
-font-weight: 500;
-line-height: 16px;
-letter-spacing: 0em;
-text-align: center;
-align-self: center;
+#picture-ajout {
+    background: rgba(203, 214, 220, 1);
+    border: transparent;
+    color: rgba(48, 102, 133, 1);
+    font-family: Work Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    align-self: center;
 }
 
-#picture-ajout span{
+#picture-ajout span {
     color: #444;
     text-align: center;
     font-size: 10px;
     font-family: Work Sans;
+}
+
+/*--------formulaire---------*/
+
+.ajout form {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    color: #3D3D3D;
+    font-size: 14px;
+    font-family: Work Sans;
+    font-weight: 500;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.ajout label {
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+
+.ajout form input {
+    width: 420px;
+    height: 51px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    color: rgb(55, 55, 55);
+    border: transparent;
+    margin-top: 10px;
+}
+
+.ajout form hr {
+    width: 100%;
+}
+
+#submit {
+    width: 237px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #A7A7A7;
+    border: transparent;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-family: Syne;
+    font-weight: 700;
 }
