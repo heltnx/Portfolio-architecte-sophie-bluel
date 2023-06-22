@@ -55,7 +55,7 @@ divModalGallery.innerHTML = `
 const divModalAjout = document.createElement("div");
 divModalAjout.setAttribute("class", "modal-gallery ajout modal-contain");
 divModalAjout.innerHTML = ` 
-    <img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
+        <img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
         <h2>Ajout Photo</h2>
         <div class="picture">
             <img src="./assets/icons/picture.png" alt="modèle picture">
