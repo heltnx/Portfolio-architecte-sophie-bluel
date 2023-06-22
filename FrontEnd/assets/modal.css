@@ -22,7 +22,7 @@
     animation: slideFromTop .3s both;
 }
 
-.modal button {
+.js-modal-close {
     cursor: pointer;
     font-size: 18px;
     background: transparent;
@@ -40,4 +40,60 @@
     100% {
         transform: translateY(0px);
     }
+}
+
+/*-------------------------------*/
+/* contenu modale gelerie photo */
+/*------------------------------*/
+
+.modal-gallery{
+    text-align: center;
+   width: 70%;
+    min-width: fit-content;
+    margin: 0 auto;
+}
+
+.modal-gallery h2{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    color: #000000;
+}
+hr{
+    width: 100%;
+    height: 0;
+    border: 1px solid #969696;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.modal-gallery button{
+    cursor: pointer;
+	font-family: Syne;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 19px;
+	letter-spacing: 0em;
+	color: white;
+	background-color: #1D6154;
+	text-align: center;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	padding: 8px 35px;
+}
+#supprimer {
+    cursor: pointer;
+ display: block;
+ margin: 25px;
+ font-family: 'Syne';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+text-align: center;
+color: #D65353;
+ ;
 }
