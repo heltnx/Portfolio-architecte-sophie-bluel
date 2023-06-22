@@ -65,17 +65,21 @@ divModalAjout.innerHTML = `
         <form>
             <label for="titre">Titre</label>
             <input type="text" id="titre" name="titre">
+
             <label for="category">Catégorie</label>
-            <input type="text" id="form-category" name="category">
+            <select name="categories" id="form-category">
+                <option value="0">tous</option>
+            </select>
+          
             <hr>
             <button id="submit">Valider</button>
         </form>
 `;
 
-/*---------gestionnaire d'évènements au click sur la modale--------- */
-
 const asideModale = document.querySelector(".modal-contain");
 asideModale.appendChild(divModalGallery);
+
+/*---------gestionnaire d'évènements au click sur la modale--------- */
 
 // Variable pour suivre l'état de la fenêtre modale actuellement affichée
 let currentModal = "gallery";
