@@ -15,7 +15,7 @@ const open_modal = function (event) {
     modal.addEventListener('click', close_modal); // au click "fermer la modale" 
 
     modal.querySelector('.js-modal-close').addEventListener('click', close_modal); // au click sur le bouton "fermer la modale"
-
+    
     modal.querySelector('.modal-contain').addEventListener('click', function (event) {
         event.stopPropagation(); // au click dans le conteneur de la modale
 
@@ -42,67 +42,7 @@ document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les �
 
 /*--------------contenu des modales------------------------------------*/
 
-const divModalGallery = document.createElement("div");
-divModalGallery.setAttribute("class", "modal-gallery modal2 modal-contain gallery");
-divModalGallery.innerHTML = ` 
-        <h2>Galerie Photo</h2>
-        <div class="gallery-edit"></div>
-        <hr>
-        <button id="ajouter">Ajouter une photo</button>
-        <span id="supprimer">Supprimer la galerie</span>
-`;
-
-const divModalAjout = document.createElement("div");
-divModalAjout.setAttribute("class", "modal-gallery ajout modal-contain");
-divModalAjout.innerHTML = ` 
-        <img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
-        <h2>Ajout Photo</h2>
-        <div class="picture">
-            <img src="./assets/icons/picture.png" alt="modèle picture">
-            <button id="picture-ajout">+ Ajouter photo</button>
-            <span>jpg, png : 4mo max</span>
-        </div>
-        <form>
-            <label for="titre">Titre</label>
-            <input type="text" id="titre" name="titre">
-
-            <label for="category">Catégorie</label>
-            <select name="categories" id="form-category">
-                <option value="0">tous</option>
-            </select>
-          
-            <hr>
-            <button id="submit">Valider</button>
-        </form>
-`;
-
-const asideModale = document.querySelector(".modal-contain");
-asideModale.appendChild(divModalGallery);
-
 /*---------gestionnaire d'évènements au click sur la modale--------- */
 
-// Variable pour suivre l'état de la fenêtre modale actuellement affichée
-let currentModal = "gallery";
-
-// click sur bouton "Modifier" (à l'extérieur de la fenêtre modale)
-document.getElementById("modifier").addEventListener("click", function () {
-    currentModal = "gallery"; // Met à jour l'état de la modale
-    divModalGallery.style.display = "block"; // Affiche la première modale
-});
-
-// click sur le bouton "Ajouter" dans la première modale
-document.getElementById("ajouter").addEventListener("click", function () {
-    currentModal = "ajout"; // Met à jour l'état de la modale
-    asideModale.removeChild(divModalGallery); // Supprime la première modale
-    asideModale.appendChild(divModalAjout); // Ajoute la deuxième modale
-});
-
-// click sur la flêche "retour" de la deuxieme modale
-asideModale.addEventListener("click", function (event) {
-    if (event.target.id === "retour") {
-        currentModal = "gallery"; // Met à jour l'état de la modale
-        asideModale.removeChild(divModalAjout); // Supprime la deuxième modale
-        asideModale.appendChild(divModalGallery); // Ajoute la première modale
-    }
-});
-
+  
+  // Click sur la flèche "retour" de la deuxième modale

@@ -22,12 +22,44 @@
 		<button>publier les changements</button>
 	</div>
 
+	
 	<!-- fenetres modale -->
-	<aside id="modal1" class="modal" aria-hidden="true" role="editier" style="display: none;">
+	<aside id="modal1" class="modal" aria-hidden="true" role="editer" style="display: none;">
 		<div class="modal-contain">
 			<button class="js-modal-close">X</button>
+			<!-- fenetres modale GALLERY-->
+			<div id="galleryPhoto" class="modal-gallery modal2 modal-contain">
+				<h2>Galerie Photo</h2>
+				<div class="gallery-edit"></div>
+				<hr>
+				<button id="ajouter">Ajouter une photo</button>
+				<span id="supprimer">Supprimer la galerie</span>
+			</div>
+			<!-- fenetres modale AJOUT-->
+			<div id="ajout" class="modal-gallery modal-contain">
+				<img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
+				<h2>Ajout Photo</h2>
+				<div class="picture">
+					<img src="./assets/icons/picture.png" alt="modèle picture">
+					<button id="picture-ajout">+ Ajouter photo</button>
+					<span>jpg, png : 4mo max</span>
+				</div>
+				<form>
+					<label for="titre">Titre</label>
+					<input type="text" id="titre" name="titre">
+					<label for="category">Catégorie</label>
+					<select name="categories" id="form-category">
+						<option value="0">tous</option>
+					</select>
+					<hr>
+					<button id="submit">Valider</button>
+				</form>
+			</div>
+			
 		</div>
+		
 	</aside>
+
 
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>

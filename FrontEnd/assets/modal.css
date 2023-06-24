@@ -64,6 +64,9 @@
     min-width: fit-content;
     margin: 0 auto;
 }
+.modal-contain .active{
+    display: block;
+}
 
 .gallery-edit {
     width: 70%;
@@ -167,7 +170,7 @@ hr {
 
 /*--------formulaire---------*/
 
-.ajout form {
+#ajout form {
     width: 420px;
     display: flex;
     flex-direction: column;
@@ -180,13 +183,13 @@ hr {
     margin: auto;
 }
 
-.ajout label {
+#ajout label {
     align-self: flex-start;
     margin-top: 20px;
 }
 
 
-.ajout form input {
+#ajout form input {
     width: 420px;
     height: 51px;
     flex-shrink: 0;
@@ -197,7 +200,7 @@ hr {
     margin-top: 10px;
 }
 
-.ajout form hr {
+#ajout form hr {
     width: 100%;
 }
 
