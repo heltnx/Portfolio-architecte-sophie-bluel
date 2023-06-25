@@ -25,7 +25,7 @@
 
           if (response.ok) { //si connection reussie !!!
             // Localstorage element
-            localStorage.setItem("connected", "connected");
+            localStorage.setItem("connected", true);
           
             window.location.href = 'index.html';//redirige vers la page d'
 

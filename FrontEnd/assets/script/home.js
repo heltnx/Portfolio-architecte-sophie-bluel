@@ -33,18 +33,14 @@ function open_edition() {
   const elements = document.querySelectorAll(".modification");
   elements.forEach(element => {
 
-    if (connected == "connected") {
+    if (connected == "true") {
       element.classList.add('modification-active');
     } else {
       element.classList.remove('modification-active');
     }
   });
 }
-function close_edition() {
-   window.addEventListener('beforeunload', function() {
-    localStorage.removeItem("connected");
-  });
-}
+
 // fonction pour afficher les données dans la galerie
 const gallery = document.querySelector(".gallery"); // Sélection du 1er élément HTML de la class 'gallery'
 
@@ -92,14 +88,22 @@ function filterworks(event) {
 }
 
  // Met à jour le lien "login/logout"
-function changelogin() {
+ function changelogin() {
   const loginLink = document.getElementById("login-link");
   const connected = localStorage.getItem("connected");
 
-  if (connected === "connected") {
+  if (connected) {
     loginLink.innerText = "Logout";
+    loginLink.addEventListener("click", function() {
+      // Effacer l'état de connexion du localStorage lors du clic sur le lien de déconnexion
+      localStorage.removeItem("connected");
+    });
   } else {
     loginLink.innerText = "Login";
+    loginLink.removeEventListener("click", function() {
+      // Supprime l'événement de clic sur le lien de déconnexion s'il existe
+      localStorage.removeItem("connected");
+    });
   }
 }
 
@@ -110,7 +114,6 @@ window.addEventListener("load", changelogin); // au chargement de la page
 window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
 
 open_edition(); // appel function replace modification "active"
-close_edition()
 
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
