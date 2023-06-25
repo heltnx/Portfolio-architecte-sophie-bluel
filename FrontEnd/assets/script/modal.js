@@ -33,6 +33,7 @@ const close_modal = function (event) {
     modal.removeEventListener('click', close_modal); // Supprime le click pour "fermer la modale"
     modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le click pour "fermer la modale" sur le bouton
     modal = null; // Réinitialise la variable 'modal' à null
+    window.location.reload();
 }
 
 /* action ouvrir la modale au click sur un lien de cette classe */
