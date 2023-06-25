@@ -55,24 +55,24 @@ function removeClass(element, className) {
 }
 /*---------gestionnaire d'évènements au click sur la modale--------- */
 // Variable pour suivre l'état de la fenêtre modale actuellement affichée
-let currentModal = "galleryPhoto";
-
-// click sur bouton "Modifier" (à l'extérieur de la fenêtre modale)
-
 // click sur le bouton "Ajouter" dans la première modale
-
 document.getElementById("ajouter").addEventListener("click", function () {
-    currentModal = "ajout"; // Met à jour l'état de la modale
-    addClass(divModalGallery, "hidden"); // Supprime la première modale
-    addClass(divModalAjout, "active"); // Ajoute la deuxième modale
+    addClass(divModalGallery, "hidden"); // Supprime le premier contenu de la modale
+    removeClass(divModalGallery, "active"); // supprime la class hidden
+    addClass(divModalAjout, "active"); // Ajoute la deuxième contenu de la modale
+    removeClass(divModalAjout, "hidden"); // ajoute le deuxième contenu de la modale
+   
 });
+
 // click sur la flêche "retour" de la deuxieme modale
-asideModale.addEventListener("click", function (event) {
+const modalAjout = document.getElementById("ajout")
+modalAjout.addEventListener("click", function (event) {
     if (event.target.id === "retour") {
-        currentModal = "galleryPhoto"; // Met à jour l'état de la modale
-        addClass(divModalAjout, "hidden"); // Supprime la deuxième modale
-        addClass(divModalGallery, "active"); // Ajoute la première modale
+        addClass(divModalAjout, "hidden"); // Supprime la deuxième contenu de la modale
+        removeClass(divModalAjout, "active"); // ajoute le deuxième contenu de la modale
+        removeClass(divModalGallery, "hidden"); // supprime la class hidden
+        addClass(divModalGallery, "active"); // Ajoute le premier contenu de la modale
     }
 });
 
-  // Click sur la flèche "retour" de la deuxième modale
+ 

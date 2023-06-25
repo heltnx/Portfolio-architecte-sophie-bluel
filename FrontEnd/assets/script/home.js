@@ -4,7 +4,7 @@ async function getworks() {
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
 }
 
-// fonction pour récupérer les categoriies dans l'api
+// fonction pour récupérer les categories dans l'api
 let categories = [];
 async function getcategories() {
   const reponse = await fetch("http://localhost:5678/api/categories"); // Envoi une requête GET à l'API pour récupérer les données
