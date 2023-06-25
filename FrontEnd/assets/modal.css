@@ -64,8 +64,11 @@
     min-width: fit-content;
     margin: 0 auto;
 }
-.modal-contain .active{
+.modal-gallery:active{
     display: block;
+}
+.modal-gallery.hidden {
+    display: none;
 }
 
 .gallery-edit {

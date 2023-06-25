@@ -31,7 +31,7 @@
 
           } else { // si non,
 
-            alert('Échec de la connexion.');
+            alert('"Erreur dans l’identifiant ou le mot de passe."');
           }
         })
         .catch(error => {

@@ -15,7 +15,7 @@ const open_modal = function (event) {
     modal.addEventListener('click', close_modal); // au click "fermer la modale" 
 
     modal.querySelector('.js-modal-close').addEventListener('click', close_modal); // au click sur le bouton "fermer la modale"
-    
+
     modal.querySelector('.modal-contain').addEventListener('click', function (event) {
         event.stopPropagation(); // au click dans le conteneur de la modale
 
@@ -41,8 +41,38 @@ document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les �
 });
 
 /*--------------contenu des modales------------------------------------*/
+const divModalGallery = document.getElementById("galleryPhoto");
+const divModalAjout = document.getElementById("ajout");
+const fleche_retour = document.getElementById("retour");
 
+function addClass(element, className) {
+    element.classList.add(className);
+}
+
+// Fonction pour supprimer une classe d'un élément
+function removeClass(element, className) {
+    element.classList.remove(className);
+}
 /*---------gestionnaire d'évènements au click sur la modale--------- */
+// Variable pour suivre l'état de la fenêtre modale actuellement affichée
+let currentModal = "galleryPhoto";
 
-  
+// click sur bouton "Modifier" (à l'extérieur de la fenêtre modale)
+
+// click sur le bouton "Ajouter" dans la première modale
+
+document.getElementById("ajouter").addEventListener("click", function () {
+    currentModal = "ajout"; // Met à jour l'état de la modale
+    addClass(divModalGallery, "hidden"); // Supprime la première modale
+    addClass(divModalAjout, "active"); // Ajoute la deuxième modale
+});
+// click sur la flêche "retour" de la deuxieme modale
+asideModale.addEventListener("click", function (event) {
+    if (event.target.id === "retour") {
+        currentModal = "galleryPhoto"; // Met à jour l'état de la modale
+        addClass(divModalAjout, "hidden"); // Supprime la deuxième modale
+        addClass(divModalGallery, "active"); // Ajoute la première modale
+    }
+});
+
   // Click sur la flèche "retour" de la deuxième modale
