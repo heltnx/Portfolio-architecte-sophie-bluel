@@ -199,7 +199,7 @@ section {
 h1 {
 	display: flex;
 	flex-direction: column;
-	font-family: 'Syne';
+	font-family: 'Syne', sans-serif;
 	font-size: 22px;
 	font-weight: 800;
 	color: #B1663C
@@ -212,7 +212,7 @@ h1 span {
 }
 
 h2 {
-	font-family: 'Syne';
+	font-family: 'Syne', sans-serif;
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154;
@@ -273,7 +273,7 @@ li:hover,
 
 .filtres button {
 	cursor: pointer;
-	font-family: Syne;
+	font-family: 'Syne', sans-serif;
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 19px;
@@ -301,7 +301,6 @@ li:hover,
 
 .gallery img {
 	width: 100%;
-
 }
 
 #contact {
@@ -342,7 +341,7 @@ li:hover,
 }
 
 input[type="submit"] {
-	font-family: 'Syne';
+	font-family: 'Syne', sans-serif;
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;

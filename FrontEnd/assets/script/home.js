@@ -1,4 +1,5 @@
-// fonction pour récupérer les données dans l'api
+
+let works = [];
 async function getworks() {
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
@@ -26,6 +27,40 @@ function genererHTMLcategories(element) {
   <button id="${element.id}">${element.name}</button>
   `;
 }
+
+//fonction pour générer le modèle HTML d'un element de la modale
+function genererHTMLmodale(element) {
+  return `
+  <figure>
+    <img src="${element.imageUrl}" alt="${element.title}">
+    <span>éditer</span>
+  </figure>
+`;
+}
+document.addEventListener('DOMContentLoaded', () => {
+  // Obtenez toutes les images de la galerie
+const images = document.querySelectorAll('.gallery-edit img');
+
+// Parcourez chaque image et ajoutez un gestionnaire d'événements pour le clic
+images.forEach((image) => {
+  image.addEventListener('click', (event) => {
+    const icon = event.target.previousElementSibling; // Sélectionnez l'élément précédent l'image (l'icône)
+    const icons = document.querySelectorAll('.active-icon'); // Sélectionnez toutes les icônes avec la classe "active-icon"
+
+    // Parcourez toutes les icônes et supprimez la classe "active" sauf pour l'icône correspondante à l'image cliquée
+    icons.forEach((icon) => {
+      if (icon !== event.target.previousElementSibling) {
+        icon.classList.remove('active');
+      }
+    });
+
+    icon.classList.toggle('active'); // Ajoutez ou supprimez la classe "active" sur l'icône correspondante à l'image cliquée
+  });
+});
+});
+
+
+
 
 // fonction ouvrir la page avec le bandeau edition si login ok
 function open_edition() {
@@ -63,6 +98,15 @@ async function showcategories() {
   });
 }
 
+// fonction pour afficher la galery dans la modale
+const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la class 'gallery-edit'
+
+async function showPhotoModal() {
+  await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
+  works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
+    gallery_modale.innerHTML += genererHTMLmodale(element) // Génére le contenu HTML pour chaque element
+  });
+}
 /**  Filtrer au click sur les boutons -----------------------------------*/
 
 function filterworks(event) {
@@ -121,6 +165,8 @@ showWorks(); // affiche les données dans la galerie
 // Appel de la fonction 'showcategories' 
 showcategories(); // affiche les données dans la galerie
 
+// Appel de la fonction 'showPhotoModal' 
+showPhotoModal();
 
 // Ajout de l'écouteur d'événement à la "div filtres" (avec tous ses boutons)
 filtres.addEventListener("click", filterworks); // au click appel fonction categories(event)

@@ -4,21 +4,23 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(48, 48, 48, 0.822);
+    background: rgba(0, 0, 0, 0.517);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeIn 0.3s both;
+    padding-top: 20px;
+    animation: fadeIn 1s both;
 }
 
 @keyframes fadeIn {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
 
 .modal-contain {
     width: 630px;
@@ -26,15 +28,15 @@
     background: #FFFFFF;
     border-radius: 10px;
     overflow: auto;
-    max-width: calc(100vw - 120px);
-    max-height: calc(100vh - 250px);
+    max-width: calc(100vw - 110px);
+    max-height: calc(100vh - 200px);
     animation: slideFromTop .3s both;
 }
 
 @keyframes slideFromTop {
     0% {
         transform: translateY(-50px);
-        
+
     }
 
     100% {
@@ -63,16 +65,41 @@
     text-align: center;
     min-width: fit-content;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.modal-gallery:active{
+
+.modal-gallery:active {
     display: block;
 }
+
 .modal-gallery.hidden {
     display: none;
 }
 
 .gallery-edit {
-    width: 70%;
+    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    margin: 0 auto;
+}
+
+.gallery-edit img {
+    width: 100%;
+}
+
+.gallery-edit figure {
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-edit span {
+    text-align: left;
+    margin-top: 3px;
 }
 
 .modal-gallery h2 {
@@ -83,21 +110,21 @@
     line-height: 30px;
     text-align: center;
     color: #000000;
-    padding-top: 60px;
-    padding-bottom: 25px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
 hr {
     width: 70%;
     height: 0;
-    border: 1px solid #969696;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    border: 0.5px solid #969696;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .modal-gallery button {
     cursor: pointer;
-    font-family: Syne;
+    font-family: 'Syne', sans-serif;
     font-size: 16px;
     font-weight: 700;
     line-height: 19px;
@@ -114,7 +141,7 @@ hr {
     cursor: pointer;
     display: block;
     margin: 25px;
-    font-family: 'Syne';
+    font-family: 'Syne', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -217,6 +244,11 @@ hr {
     color: #FFF;
     text-align: center;
     font-size: 14px;
-    font-family: Syne;
+    font-family: 'Syne', sans-serif;
     font-weight: 700;
 }
+
+/*------------------------------------*/
+/* action sur les icones*/
+/*------------------------------------*/
+
