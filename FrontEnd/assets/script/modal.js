@@ -58,10 +58,10 @@ function removeClass(element, className) {
 // Variable pour suivre l'état de la fenêtre modale actuellement affichée
 // click sur le bouton "Ajouter" dans la première modale
 document.getElementById("ajouter").addEventListener("click", function () {
-    addClass(divModalGallery, "hidden"); // Supprime le premier contenu de la modale
-    removeClass(divModalGallery, "active"); // supprime la class hidden
+    addClass(divModalGallery, "hidden"); // cache le premier contenu de la modale
+    removeClass(divModalGallery, "active"); // supprime la class active
     addClass(divModalAjout, "active"); // Ajoute la deuxième contenu de la modale
-    removeClass(divModalAjout, "hidden"); // ajoute le deuxième contenu de la modale
+    removeClass(divModalAjout, "hidden"); // supprime la class hidden
    
 });
 
@@ -69,8 +69,8 @@ document.getElementById("ajouter").addEventListener("click", function () {
 const modalAjout = document.getElementById("ajout")
 modalAjout.addEventListener("click", function (event) {
     if (event.target.id === "retour") {
-        addClass(divModalAjout, "hidden"); // Supprime la deuxième contenu de la modale
-        removeClass(divModalAjout, "active"); // ajoute le deuxième contenu de la modale
+        addClass(divModalAjout, "hidden"); // cache le deuxième contenu de la modale
+        removeClass(divModalAjout, "active"); // supprime la class active
         removeClass(divModalGallery, "hidden"); // supprime la class hidden
         addClass(divModalGallery, "active"); // Ajoute le premier contenu de la modale
     }
