@@ -21,65 +21,12 @@ function genererHTML(element) {
     </figure>
   `;
 }
+
 //fonction pour générer le modèle HTML d'une categorie
 function genererHTMLcategories(element) {
   return `
   <button id="${element.id}">${element.name}</button>
   `;
-}
-
-//fonction pour générer le modèle HTML d'un element de la modale
-function genererHTMLmodale(element) {
-  return `
-  <article class="projet-modale">
-    <div class="icon-action">
-      <span class="icon-contain"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
-      <span class="icon-contain"><i class="fa-solid fa-trash-can trash"></i></span>
-    </div>
-    <figure>
-      <img src="${element.imageUrl}" alt="${element.title}">
-      <span class="edit">éditer</span>
-    </figure>
-  </article>
-`;
-}
-document.addEventListener('DOMContentLoaded', () => {
-  // Obtenez toutes les images de la galerie
-const images = document.querySelectorAll('.gallery-edit img');
-
-// Parcourez chaque image et ajoutez un gestionnaire d'événements pour le clic
-images.forEach((image) => {
-  image.addEventListener('click', (event) => {
-    const icon = event.target.previousElementSibling; // Sélectionnez l'élément précédent l'image (l'icône)
-    const icons = document.querySelectorAll('.active-icon'); // Sélectionnez toutes les icônes avec la classe "active-icon"
-
-    // Parcourez toutes les icônes et supprimez la classe "active" sauf pour l'icône correspondante à l'image cliquée
-    icons.forEach((icon) => {
-      if (icon !== event.target.previousElementSibling) {
-        icon.classList.remove('active');
-      }
-    });
-
-    icon.classList.toggle('active'); // Ajoutez ou supprimez la classe "active" sur l'icône correspondante à l'image cliquée
-  });
-});
-});
-
-
-
-
-// fonction ouvrir la page avec le bandeau edition si login ok
-function open_edition() {
-  const connected = localStorage.getItem("connected");
-  const elements = document.querySelectorAll(".modification");
-  elements.forEach(element => {
-
-    if (connected == "true") {
-      element.classList.add('modification-active');
-    } else {
-      element.classList.remove('modification-active');
-    }
-  });
 }
 
 // fonction pour afficher les données dans la galerie
@@ -104,15 +51,8 @@ async function showcategories() {
   });
 }
 
-// fonction pour afficher la galery dans la modale
-const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la class 'gallery-edit'
 
-async function showPhotoModal() {
-  await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
-  works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-    gallery_modale.innerHTML += genererHTMLmodale(element) // Génére le contenu HTML pour chaque element
-  });
-}
+
 /**  Filtrer au click sur les boutons -----------------------------------*/
 
 function filterworks(event) {
@@ -136,34 +76,8 @@ function filterworks(event) {
     buttons[i].classList.toggle("active", buttons[i] === event.target);
   }
 }
-
- // Met à jour le lien "login/logout"
- function changelogin() {
-  const loginLink = document.getElementById("login-link");
-  const connected = localStorage.getItem("connected");
-
-  if (connected) {
-    loginLink.innerText = "Logout";
-    loginLink.addEventListener("click", function() {
-      // Effacer l'état de connexion du localStorage lors du clic sur le lien de déconnexion
-      localStorage.removeItem("connected");
-    });
-  } else {
-    loginLink.innerText = "Login";
-    loginLink.removeEventListener("click", function() {
-      // Supprime l'événement de clic sur le lien de déconnexion s'il existe
-      localStorage.removeItem("connected");
-    });
-  }
-}
-
+ 
 /**  Actions à executer ------------------------------------------------*/
-
-//appel function "changelogin" passe sur "logout" sur "storage connected"
-window.addEventListener("load", changelogin); // au chargement de la page
-window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
-
-open_edition(); // appel function replace modification "active"
 
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
@@ -171,8 +85,7 @@ showWorks(); // affiche les données dans la galerie
 // Appel de la fonction 'showcategories' 
 showcategories(); // affiche les données dans la galerie
 
-// Appel de la fonction 'showPhotoModal' 
-showPhotoModal();
+
 
 // Ajout de l'écouteur d'événement à la "div filtres" (avec tous ses boutons)
 filtres.addEventListener("click", filterworks); // au click appel fonction categories(event)

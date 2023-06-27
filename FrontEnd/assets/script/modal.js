@@ -76,4 +76,31 @@ modalAjout.addEventListener("click", function (event) {
     }
 });
 
- 
+//fonction pour générer le modèle HTML d'un element de la modale
+function genererHTMLmodale(element) {
+    return `
+    <article class="projet-modale">
+      <div class="icon-action">
+        <span class="icon-contain"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
+        <span class="icon-contain"><i class="fa-solid fa-trash-can trash"></i></span>
+      </div>
+      <figure>
+        <img src="${element.imageUrl}" alt="${element.title}">
+        <span class="edit">éditer</span>
+      </figure>
+    </article>
+  `;
+  }
+
+  // fonction pour afficher la galery dans la modale
+const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la class 'gallery-edit'
+
+async function showPhotoModal() {
+  await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
+  works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
+    gallery_modale.innerHTML += genererHTMLmodale(element) // Génére le contenu HTML pour chaque element
+  });
+}
+
+// Appel de la fonction 'showPhotoModal' 
+showPhotoModal();
