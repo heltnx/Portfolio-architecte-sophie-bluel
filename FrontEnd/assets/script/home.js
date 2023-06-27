@@ -29,7 +29,7 @@ async function showWorks() {
 // Appel de la fonction 'showWorks' 
 showWorks(); // affiche les données dans la galerie
 
-/** ajouts des categories ---- boutons filtres ----------------------------------------------*/
+/** ---- ajout des "categories" ---- boutons filtres ----------------------------------------------*/
 
 // fonction pour récupérer les categories dans l'api
 let categories = [];
@@ -44,7 +44,6 @@ function genererHTMLcategories(element) {
   <button id="${element.id}">${element.name}</button>
   `;
 }
-
 
 // fonction pour afficher les filtres 
 const filtres = document.querySelector(".filtres"); // Sélection du 1er élément HTML de la class 'gallery'
@@ -84,7 +83,7 @@ function filterworks(event) {
 }
 
 // Ajout de l'écouteur d'événement à la "div filtres" (avec tous ses boutons)
-filtres.addEventListener("click", filterworks); // au click appel fonction categories(event)
+filtres.addEventListener("click", filterworks); // au click appel fonction filterworks(event)
 
 
 
