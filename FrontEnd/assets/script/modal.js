@@ -1,4 +1,6 @@
 
+/*---------- gestion ouverture fermetures modales container------------------------*/
+
 let modal = null; // initialise la variable 'modal' à null (fermée)
 
 // Fonction pour ouvrir la modale
@@ -41,21 +43,24 @@ document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les �
     a.addEventListener("click", open_modal);
 });
 
-/*--------------contenu des modales------------------------------------*/
-const divModalGallery = document.getElementById("galleryPhoto");
-const divModalAjout = document.getElementById("ajout");
-const fleche_retour = document.getElementById("retour");
+/*------------- gestion ouverture et fermeture contenu des 2 modales -----------------------------------*/
 
+//déclaration des variables
+const divModalGallery = document.getElementById("galleryPhoto"); // modale 1 gallery
+const divModalAjout = document.getElementById("ajout"); // modale 2 ajout
+const fleche_retour = document.getElementById("retour"); // fleche retour 
+
+// Fonction pour ajouter une classe d'un élément
 function addClass(element, className) {
     element.classList.add(className);
 }
-
 // Fonction pour supprimer une classe d'un élément
 function removeClass(element, className) {
     element.classList.remove(className);
 }
+
 /*---------gestionnaire d'évènements au click sur la modale--------- */
-// Variable pour suivre l'état de la fenêtre modale actuellement affichée
+
 // click sur le bouton "Ajouter" dans la première modale
 document.getElementById("ajouter").addEventListener("click", function () {
     addClass(divModalGallery, "hidden"); // cache le premier contenu de la modale
@@ -75,6 +80,8 @@ modalAjout.addEventListener("click", function (event) {
         addClass(divModalGallery, "active"); // Ajoute le premier contenu de la modale
     }
 });
+
+/*-------- rempli dynamiquement la modale Gallery Photo-----------------*/
 
 //fonction pour générer le modèle HTML d'un element de la modale
 function genererHTMLmodale(element) {
