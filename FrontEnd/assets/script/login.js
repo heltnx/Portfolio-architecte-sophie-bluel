@@ -74,6 +74,7 @@ function changelogin() {
 }
 
 //appel function "changelogin" passe sur "logout" sur "storage connected"
+
 window.addEventListener("load", changelogin); // au chargement de la page
 window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
 

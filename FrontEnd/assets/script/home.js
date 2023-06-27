@@ -1,15 +1,9 @@
 
+// fonction pour récupérer les éléments dans l'api
 let works = [];
 async function getworks() {
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
-}
-
-// fonction pour récupérer les categories dans l'api
-let categories = [];
-async function getcategories() {
-  const reponse = await fetch("http://localhost:5678/api/categories"); // Envoi une requête GET à l'API pour récupérer les données
-  categories = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
 }
 
 //fonction pour générer le modèle HTML d'un élément
@@ -19,13 +13,6 @@ function genererHTML(element) {
       <img src="${element.imageUrl}" alt="${element.title}">
       <figcaption>${element.title}</figcaption>
     </figure>
-  `;
-}
-
-//fonction pour générer le modèle HTML d'une categorie
-function genererHTMLcategories(element) {
-  return `
-  <button id="${element.id}">${element.name}</button>
   `;
 }
 
@@ -39,7 +26,25 @@ async function showWorks() {
   });
 }
 
-/** ajouts des boutons filtres ----------------------------------------------*/
+// Appel de la fonction 'showWorks' 
+showWorks(); // affiche les données dans la galerie
+
+/** ajouts des categories ---- boutons filtres ----------------------------------------------*/
+
+// fonction pour récupérer les categories dans l'api
+let categories = [];
+async function getcategories() {
+  const reponse = await fetch("http://localhost:5678/api/categories"); // Envoi une requête GET à l'API pour récupérer les données
+  categories = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'
+}
+
+//fonction pour générer le modèle HTML d'une categorie
+function genererHTMLcategories(element) {
+  return `
+  <button id="${element.id}">${element.name}</button>
+  `;
+}
+
 
 // fonction pour afficher les filtres 
 const filtres = document.querySelector(".filtres"); // Sélection du 1er élément HTML de la class 'gallery'
@@ -51,9 +56,10 @@ async function showcategories() {
   });
 }
 
+ // Appel de la fonction 'showcategories' 
+ showcategories(); // affiche les données dans la galerie
 
-
-/**  Filtrer au click sur les boutons -----------------------------------*/
+/**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
 
 function filterworks(event) {
   const categoryId = event.target.id; // Récupère l'ID de la catégorie cliquée
@@ -76,16 +82,6 @@ function filterworks(event) {
     buttons[i].classList.toggle("active", buttons[i] === event.target);
   }
 }
- 
-/**  Actions à executer ------------------------------------------------*/
-
-// Appel de la fonction 'showWorks' 
-showWorks(); // affiche les données dans la galerie
-
-// Appel de la fonction 'showcategories' 
-showcategories(); // affiche les données dans la galerie
-
-
 
 // Ajout de l'écouteur d'événement à la "div filtres" (avec tous ses boutons)
 filtres.addEventListener("click", filterworks); // au click appel fonction categories(event)

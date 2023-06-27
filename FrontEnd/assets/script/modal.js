@@ -38,7 +38,7 @@ const close_modal = function (event) {
     window.location.reload();
 }
 
-/* action ouvrir la modale au click sur un lien de cette classe */
+/* action ouvrir la modale au click sur un lien des elements ayant cette class ".js-modal" */
 document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les éléments avec la classe 'js-modal'
     a.addEventListener("click", open_modal);
 });
