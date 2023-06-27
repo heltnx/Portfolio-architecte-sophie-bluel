@@ -31,10 +31,16 @@ function genererHTMLcategories(element) {
 //fonction pour générer le modèle HTML d'un element de la modale
 function genererHTMLmodale(element) {
   return `
-  <figure>
-    <img src="${element.imageUrl}" alt="${element.title}">
-    <span>éditer</span>
-  </figure>
+  <article class="projet-modale">
+    <div class="icon-action">
+      <span class="icon-contain"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
+      <span class="icon-contain"><i class="fa-solid fa-trash-can trash"></i></span>
+    </div>
+    <figure>
+      <img src="${element.imageUrl}" alt="${element.title}">
+      <span class="edit">éditer</span>
+    </figure>
+  </article>
 `;
 }
 document.addEventListener('DOMContentLoaded', () => {

@@ -143,7 +143,9 @@ body {
 	font-family: 'Work Sans';
 	font-size: 14px;
 }
-
+a{
+	font-family: 'Syne', sans-serif;
+}
 .modification {
 	display: none;
 }
