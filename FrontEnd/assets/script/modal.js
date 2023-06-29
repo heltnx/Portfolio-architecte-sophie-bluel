@@ -79,14 +79,14 @@ document.getElementById("ajouter").addEventListener("click", function () {
   openform();
 });
 
-// click sur la flêche "retour" de la deuxieme modale
+// click sur la flêche "retour" de la modale "ajout"
 document.getElementById("retour").addEventListener("click", function () {
   opengallery();
 });
 
 
 
-/*-------- rempli dynamiquement la modale Gallery Photo-----------------*/
+/*-------- remplis dynamiquement la modale Gallery Photo-----------------*/
 
 // fonction pour générer le modèle HTML d'un élément de la modale
 function genererHTMLmodale(element, index) {
