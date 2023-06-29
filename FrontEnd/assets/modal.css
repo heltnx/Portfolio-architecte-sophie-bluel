@@ -267,14 +267,30 @@ hr {
     position: absolute;
     top: 5px;
     right: 5px;
+    display: flex;
+    flex-direction: row;
 }
 
-.icon-contain {
+.icon-moove {
+    display: none;
+}
+
+.icon-moove.active{
+    display: block;
+    background: #000000;
+    border-radius: 3px;
+    padding:4px ;
+    font-size: 9px;
+    margin-right: 3px;
+}
+
+.icon-contain{
     background: #000000;
     border-radius: 3px;
     padding:4px ;
     font-size: 9px;
 }
+
 
 .moove::before, .trash::before {
     cursor: pointer;

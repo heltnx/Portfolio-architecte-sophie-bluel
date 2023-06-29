@@ -83,12 +83,15 @@ modalAjout.addEventListener("click", function (event) {
 
 /*-------- rempli dynamiquement la modale Gallery Photo-----------------*/
 
-//fonction pour générer le modèle HTML d'un element de la modale
-function genererHTMLmodale(element) {
-    return `
+// fonction pour générer le modèle HTML d'un élément de la modale
+function genererHTMLmodale(element, index) {
+  // Ajouter la classe "active" uniquement si l'index est égal à 0
+  const mooveClass = index === 0 ? "active" : "";
+
+  return `
     <article class="projet-modale">
       <div class="icon-action">
-        <span class="icon-contain"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
+        <span class="icon-moove ${mooveClass}"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
         <span class="icon-contain"><i class="fa-solid fa-trash-can trash"></i></span>
       </div>
       <figure>
@@ -97,17 +100,18 @@ function genererHTMLmodale(element) {
       </figure>
     </article>
   `;
-  }
+}
 
-  // fonction pour afficher la galery dans la modale
-const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la class 'gallery-edit'
+// fonction pour afficher la galerie dans la modale
+const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la classe 'gallery-edit'
 
 async function showPhotoModal() {
-  await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
-  works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-    gallery_modale.innerHTML += genererHTMLmodale(element) // Génére le contenu HTML pour chaque element
+  await getworks(); // Appel de la fonction 'getworks' pour récupérer les données
+  works.forEach((element, index) => { // Parcours de chaque élément dans le tableau 'works'
+    gallery_modale.innerHTML += genererHTMLmodale(element, index); // Génère le contenu HTML pour chaque élément en passant l'index
   });
 }
+
 
 // Appel de la fonction 'showPhotoModal' 
 showPhotoModal();
