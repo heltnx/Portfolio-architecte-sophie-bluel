@@ -227,7 +227,8 @@ hr {
 }
 
 
-#ajout form input {
+#ajout form input,
+#ajout form select {
     width: 420px;
     height: 51px;
     flex-shrink: 0;
@@ -237,7 +238,7 @@ hr {
     border: transparent;
     margin-top: 10px;
 }
-
+  
 #ajout form hr {
     width: 100%;
 }
