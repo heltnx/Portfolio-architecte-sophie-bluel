@@ -143,9 +143,11 @@ body {
 	font-family: 'Work Sans';
 	font-size: 14px;
 }
-a{
+
+a {
 	font-family: 'Syne', sans-serif;
 }
+
 .modification {
 	display: none;
 }
@@ -184,10 +186,22 @@ a{
 	left: 62%;
 }
 
-.modif i {
+.modif i,
+.modif-figure i,
+.modif-article i {
 	margin-right: 10px;
 }
 
+.modif-figure {
+	position: relative;
+	left: 60px;
+	top: 15px;
+}
+
+.modif-article {
+	position: relative;
+	bottom: 20px;
+}
 
 header {
 	display: flex;
