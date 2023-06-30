@@ -183,8 +183,13 @@ hr {
     margin-bottom: 20px;
 }
 
-.picture img {
+#model-picture {
     width: min-content;
+}
+
+#selected-image {
+    height: 190px;
+    position: absolute;
 }
 
 #picture-ajout{
@@ -264,7 +269,7 @@ hr {
     width: 100%;
 }
 
-#submit {
+#valider {
     width: 237px;
     height: 36px;
     flex-shrink: 0;

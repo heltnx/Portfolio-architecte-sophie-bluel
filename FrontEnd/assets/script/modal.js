@@ -146,4 +146,19 @@ async function showFormCategory() {
 
 showFormCategory(); // affiche les données dans la liste d'options
 
+/** ---- ajout de la photo dans le formulaire ajout ----------------------------------------------*/
 
+const fileUpload = document.getElementById("file-upload");
+const selectedImage = document.getElementById("selected-image");
+
+fileUpload.addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function (event) {
+    selectedImage.src = event.target.result;
+    selectedImage.style.display = "inline"; // Affiche l'image sélectionnée
+  };
+
+  reader.readAsDataURL(file);
+});
