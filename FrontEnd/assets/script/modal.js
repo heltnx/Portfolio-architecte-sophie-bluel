@@ -121,9 +121,10 @@ async function showPhotoModal() {
 // Appel de la fonction 'showPhotoModal' 
 showPhotoModal();
 
-/** ---- ajout des "categories" ---- liste options ----------------------------------------------*/
+/** ---- ajout des "categories" dans la liste selects ----------------------------------------------*/
 
-getcategories()
+// fonction dans home.js récupère les categories dans l'api
+getcategories() 
 
 //fonction pour générer le modèle HTML d'une categorie
 function genererHTMLFormCategory(element) {
