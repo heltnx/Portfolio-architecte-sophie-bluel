@@ -6,7 +6,6 @@ let modal = null; // initialise la variable 'modal' à null (fermée)
 //déclaration des variables
 const divModalGallery = document.getElementById("galleryPhoto"); // modale 1 gallery
 const divModalAjout = document.getElementById("ajout"); // modale 2 ajout
-const fleche_retour = document.getElementById("retour"); // fleche retour 
 
 // Fonction pour ajouter une classe d'un élément
 function addClass(element, className) {
