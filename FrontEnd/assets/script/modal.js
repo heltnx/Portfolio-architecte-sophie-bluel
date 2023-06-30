@@ -12,6 +12,7 @@ const fleche_retour = document.getElementById("retour"); // fleche retour
 function addClass(element, className) {
   element.classList.add(className);
 }
+
 // Fonction pour supprimer une classe d'un élément
 function removeClass(element, className) {
   element.classList.remove(className);
@@ -117,6 +118,32 @@ async function showPhotoModal() {
   });
 }
 
-
 // Appel de la fonction 'showPhotoModal' 
 showPhotoModal();
+
+/** ---- ajout des "categories" ---- liste options ----------------------------------------------*/
+
+getcategories()
+
+//fonction pour générer le modèle HTML d'une categorie
+function genererHTMLFormCategory(element) {
+  return `
+  <option value="${element.id}">${element.name}</option>
+  `;
+}
+
+// fonction pour afficher les categories dans la liste
+const form_category = document.querySelector("#form-category"); // Sélection du 1er élément HTML de la class 'gallery'
+
+async function showFormCategory() {
+  await getcategories();  // Appel de la fonction 'getworks' pour récupérer les données
+  categories.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
+    form_category.innerHTML += genererHTMLFormCategory(element) // Génére le contenu HTML pour chaque element
+  });
+}
+
+// Appel de la fonction 'showcategories' 
+
+showFormCategory(); // affiche les données dans la liste d'options
+
+

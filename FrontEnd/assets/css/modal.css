@@ -247,7 +247,20 @@ hr {
     border: transparent;
     margin-top: 10px;
 }
-  
+
+#titre {
+   text-indent: 10px;
+}
+
+#form-category {
+    text-indent: 3px;
+    background-position: 5px center;
+  }
+
+  #form-category option {
+   padding-left: 10px;
+  }
+
 #ajout form hr {
     width: 100%;
 }
