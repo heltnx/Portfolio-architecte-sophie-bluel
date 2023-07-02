@@ -1,4 +1,4 @@
-
+checkLoginStatus()
 // fonction pour récupérer les éléments dans l'api
 let works = [];
 async function getworks() {

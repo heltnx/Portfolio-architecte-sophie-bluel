@@ -1,6 +1,6 @@
  
 //cibler le formulaire
- document.querySelector('form').addEventListener('submit', function (event) {
+ document.querySelector('#loginForm').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupère les valeurs des champs
@@ -78,11 +78,20 @@ function changelogin() {
   }
 }
 
+
+function checkLoginStatus() {
+  const connected = localStorage.getItem("connected");
+
+  if (connected == "true") {
 //appel function "changelogin" passe sur "logout" sur "storage connected"
 
 window.addEventListener("load", changelogin); // au chargement de la page
 window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
 
 open_edition(); // appel function replace modification "active"
+  }
+}
+
+
 
 
