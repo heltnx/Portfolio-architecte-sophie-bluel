@@ -31,11 +31,11 @@
     .then(userData => {
       const userId = userData.userId;
 
-      localStorage.setItem("connected", "true"); //si connection reussie !!!
-      // Localstorage element     
-      localStorage.setItem("userId", userId);
+      // si connection reussie !!!
+      localStorage.setItem("connected", "true"); // stock les elements en local 
+      localStorage.setItem("userId", userId); // stock l'id user en local 
 
-      window.location.href = 'index.html';
+      window.location.href = 'index.html'; // redirige vers la page d'accueil
     })
     .catch(error => {
       console.log('Une erreur s\'est produite :', error);
