@@ -41,7 +41,7 @@ const open_modal = function (event) {
   target.style.zIndex = "2"; // Définit un index z pour placer la modale au-dessus des autres éléments de la page
   target.removeAttribute('aria-hidden'); // Supprime aria-hidden pour rendre la modale accessible aux lecteurs d'écran
   target.setAttribute('aria-modal', true); // Ajoute aria-modal = true pour indiquer qu'il s'agit d'une modale
-  
+
   opengallery();
 
   modal = target; // Attribue la modale actuelle à la variable 'modal'
@@ -52,7 +52,7 @@ const open_modal = function (event) {
 
   // Arrête la propagation du click "fermer la modale" à l'interieur de la modale
   modal.querySelector('.modal-contain').addEventListener('click', function (event) {
-    event.stopPropagation(); 
+    event.stopPropagation();
   });
 }
 
@@ -97,7 +97,7 @@ function genererHTMLmodale(element, index) {
     <article class="projet-modale">
       <div class="icon-action">
         <span class="icon-moove ${mooveClass}"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
-        <span class="icon-contain"><i class="fa-solid fa-trash-can trash"></i></span>
+        <span class="icon-contain"><i id="trash-icon-modal-${index}" class="fa-solid fa-trash-can trash"></i></span>
       </div>
       <figure>
         <img src="${element.imageUrl}" alt="${element.title}">
@@ -123,7 +123,7 @@ showPhotoModal();
 /** ---- ajout des "categories" dans la liste selects ----------------------------------------------*/
 
 // fonction dans home.js récupère les categories dans l'api
-getcategories() 
+getcategories()
 
 //fonction pour générer le modèle HTML d'une categorie
 function genererHTMLFormCategory(element) {
@@ -147,7 +147,6 @@ async function showFormCategory() {
 showFormCategory(); // affiche les données dans la liste d'options
 
 /** ---- ajout de la photo dans le formulaire ajout ----------------------------------------------*/
-
 const fileUpload = document.getElementById("file-upload");
 const selectedImage = document.getElementById("selected-image");
 
@@ -162,3 +161,36 @@ fileUpload.addEventListener("change", function (event) {
 
   reader.readAsDataURL(file);
 });
+
+/** ---- submit formulaire ajout ----------------------------------------------*/
+
+// Fonction pour envoyer une requête POST avec les données du formulaire
+async function submitForm(event) {
+  event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
+  
+  // Récupère les valeurs du formulaire
+  const title = document.getElementById('titre').value;
+  const category = document.getElementById('form-category').value;
+  const image = document.getElementById('file-upload').files[0];
+  
+  // Crée un objet FormData pour envoyer les données multipart/form-data
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('title', title);
+  formData.append('category', category);
+  
+  // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
+  const response = await fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    body: formData
+  });
+  
+  if (response.ok) {
+    const newWork = await response.json(); // Récupère les données de la nouvelle œuvre ajoutée
+    gallery.innerHTML += genererHTML(newWork); // Ajoute la nouvelle œuvre à la galerie sans recharger la page
+  }
+}
+
+// Écouteur d'événement pour la soumission du formulaire
+const form = document.getElementById('form-ajout');
+form.addEventListener('submit', submitForm);

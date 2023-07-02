@@ -204,10 +204,8 @@ hr {
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0em;
-    text-align: center;
-    align-self: center;
     padding: 8px 18px;
-    text-align: center;
+    margin: 0 auto;
 }
 
 #picture-ajout span {

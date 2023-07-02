@@ -44,14 +44,14 @@
 			<div id="ajout" class="modal-gallery modal-contain hidden">
 				<img class="back-icon" id="retour" src="./assets/icons/back-svgrepo-com 1.png" alt="Flèche retour" />
 				<h2>Ajout Photo</h2>
-				<div class="picture">
-					<img id="selected-image" src="" alt="Image sélectionnée" style="display: none;"/>
-					<img id="model-picture" src="./assets/icons/picture.png" alt="modèle picture">
-					<label for="file-upload" id="picture-ajout">+ Ajouter photo</label>
-					<input type="file" id="file-upload" style= "display: none;" />
-					<span>jpg, png : 4mo max</span>
-				</div>
-				<form>
+				<form id="form-ajout">
+					<div class="picture">
+						<img id="selected-image" src="" alt="Image sélectionnée" style="display: none;" />
+						<img id="model-picture" src="./assets/icons/picture.png" alt="modèle picture">
+						<label for="file-upload" id="picture-ajout">+ Ajouter photo</label>
+						<input type="file" id="file-upload" style="display: none;" />
+						<span>jpg, png : 4mo max</span>
+					</div>
 					<label for="titre">Titre</label>
 					<input type="text" id="titre" name="titre">
 					<label for="category">Catégorie</label>
@@ -140,11 +140,9 @@
 			</ul>
 		</nav>
 	</footer>
-
 	<script src="assets/script/login.js"></script>
 	<script src="assets/script/home.js"></script>
 	<script src="assets/script/modal.js"></script>
-
 </body>
 
 </html>
