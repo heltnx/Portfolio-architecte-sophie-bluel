@@ -1,6 +1,6 @@
-
+ 
 //cibler le formulaire
-document.querySelector('form').addEventListener('submit', function (event) {
+ document.querySelector('form').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupère les valeurs des champs
@@ -21,23 +21,28 @@ document.querySelector('form').addEventListener('submit', function (event) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => { // Traite la réponse du serveur
-
-      if (response.ok) { //si connection reussie !!!
-        // Localstorage element
-        localStorage.setItem("connected", true);
-
-        window.location.href = 'index.html';//redirige vers la page d'
-
+    .then(response => {  // Traite la réponse du serveur
+      if (response.ok) {
+        return response.json(); // Renvoie la réponse sous forme de JSON
       } else { // si non,
-
-        alert('"Erreur dans l’identifiant ou le mot de passe."');
+        throw new Error('Erreur dans l’identifiant ou le mot de passe.');
       }
+    })
+    .then(userData => {
+      const userId = userData.userId;
+
+      localStorage.setItem("connected", "true"); //si connection reussie !!!
+      // Localstorage element     
+      localStorage.setItem("userId", userId);
+
+      window.location.href = 'index.html';
     })
     .catch(error => {
       console.log('Une erreur s\'est produite :', error);
+      alert(error.message);
     });
 });
+
 
 // fonction ouvrir la page avec le bandeau edition si login ok
 function open_edition() {
