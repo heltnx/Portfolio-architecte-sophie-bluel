@@ -182,7 +182,11 @@ async function submitForm(event) {
   // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
   const response = await fetch('http://localhost:5678/api/works', {
     method: 'POST',
-    body: formData
+    body: formData,
+    headers: {
+      'accept':' application/json',
+      'Content-Type': 'multipart/form-data'
+    }
   });
   
   if (response.ok) {
