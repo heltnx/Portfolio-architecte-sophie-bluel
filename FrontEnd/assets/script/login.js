@@ -1,6 +1,7 @@
- 
+let accessToken;
+
 //cibler le formulaire
- document.querySelector('#loginForm').addEventListener('submit', function (event) {
+document.querySelector('#loginForm').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupère les valeurs des champs
@@ -22,18 +23,18 @@
     body: JSON.stringify(data)
   })
     .then(response => {  // Traite la réponse du serveur
-      if (response.ok) {
+      if (response.ok) {  // si connexion réussie
         return response.json(); // Renvoie la réponse sous forme de JSON
       } else { // si non,
         throw new Error('Erreur dans l’identifiant ou le mot de passe.');
       }
     })
     .then(userData => {
+      accessToken = userData.token; // Récupère le jeton d'accès de la réponse JSON
       const userId = userData.userId;
-
-      // si connection reussie !!!
-      localStorage.setItem("connected", "true"); // stock les elements en local 
-      localStorage.setItem("userId", userId); // stock l'id user en local 
+    
+      localStorage.setItem("connected", "true"); // stock les éléments en local 
+      localStorage.setItem("userId", userId); // stock l'id utilisateur en local 
 
       window.location.href = 'index.html'; // redirige vers la page d'accueil
     })
@@ -42,6 +43,33 @@
       alert(error.message);
     });
 });
+
+// fonction ouvrir la page avec le bandeau edition si login ok
+function open_edition() {
+  const connected = localStorage.getItem("connected");
+  const elements = document.querySelectorAll(".modification");
+  elements.forEach(element => {
+
+    if (connected == "true") {
+      element.classList.add('modification-active');
+      // Utilise le jeton d'accès dans une autre requête ou pour effectuer des opérations
+      fetch('http://localhost:5678/api/users/login', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`, // Utilise le jeton d'accès dans l'en-tête Authorization
+        },
+        // Autres options de la requête
+      })
+        .then(response => {
+          // Traiter la réponse de l'API
+        })
+        .catch(error => {
+          // Gérer les erreurs
+        });
+    } else {
+      element.classList.remove('modification-active');
+    }
+  });
+}
 
 
 // fonction ouvrir la page avec le bandeau edition si login ok

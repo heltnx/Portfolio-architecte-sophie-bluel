@@ -143,10 +143,11 @@ async function showFormCategory() {
 }
 
 // Appel de la fonction 'showcategories' 
+showFormCategory(); // affiche les données dans la liste
 
-showFormCategory(); // affiche les données dans la liste d'options
 
 /** ---- ajout de la photo dans le formulaire ajout ----------------------------------------------*/
+
 const fileUpload = document.getElementById("file-upload");
 const selectedImage = document.getElementById("selected-image");
 
@@ -162,39 +163,69 @@ fileUpload.addEventListener("change", function (event) {
   reader.readAsDataURL(file);
 });
 
+/** ---- verification remplissage des champs / bouton coloré  ----------------------------------------------*/
+
+// Sélection des champs du formulaire
+const titleInput = document.getElementById('titre');
+const imageInput = document.getElementById('file-upload');
+const validerButton = document.getElementById('valider');
+
+// Fonction pour vérifier si tous les champs sont remplis
+function checkAllFieldsFilled() {
+  if (titleInput.value.trim() !== '' && imageInput.files.length > 0) {
+    validerButton.style.backgroundColor = '#1D6154'; // Modifier la couleur du bouton si les champs sont remplis
+  } else {
+    validerButton.style.backgroundColor = ''; // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
+  }
+}
+
+// Écouter l'événement "input" pour les champs du formulaire
+titleInput.addEventListener('input', checkAllFieldsFilled);
+imageInput.addEventListener('input', checkAllFieldsFilled);
+
+
+
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
-// Fonction pour envoyer une requête POST avec les données du formulaire
-async function submitForm(event) {
-  event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
-  
+//cibler le formulaire
+document.querySelector('#form-ajout').addEventListener('submit', function (event) {
+  event.preventDefault(); // Empêche la soumission du formulaire
+
   // Récupère les valeurs du formulaire
   const title = document.getElementById('titre').value;
   const category = document.getElementById('form-category').value;
   const image = document.getElementById('file-upload').files[0];
-  
+
   // Crée un objet FormData pour envoyer les données multipart/form-data
   const formData = new FormData();
   formData.append('image', image);
   formData.append('title', title);
   formData.append('category', category);
-  
-  // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
-  const response = await fetch('http://localhost:5678/api/works', {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'accept':' application/json',
-      'Content-Type': 'multipart/form-data'
-    }
-  });
-  
-  if (response.ok) {
-    const newWork = await response.json(); // Récupère les données de la nouvelle œuvre ajoutée
-    gallery.innerHTML += genererHTML(newWork); // Ajoute la nouvelle œuvre à la galerie sans recharger la page
-  }
-}
 
-// Écouteur d'événement pour la soumission du formulaire
-const form = document.getElementById('form-ajout');
-form.addEventListener('submit', submitForm);
+  // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
+  fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    },
+    body: formData
+  })
+    .then(response => {  // Traite la réponse du serveur
+      if (response.ok) {  // si la connexion réussit
+        return response.json(); // Renvoie la réponse sous forme de JSON
+      } else { // sinon
+        throw new Error('Erreur de connexion');
+      }
+    })
+    .then(responseJson => {
+      const newWork = responseJson; // Récupère les données de la nouvelle œuvre ajoutée
+
+      // Ajoute la nouvelle œuvre à la galerie sans recharger la page
+      const gallery = document.getElementById('gallery');
+      const newWorkHTML = genererHTML(newWork);
+      gallery.insertAdjacentHTML('beforeend', newWorkHTML);
+
+      // Redirige vers la page d'accueil
+      window.location.href = 'index.html';
+    })
+});
