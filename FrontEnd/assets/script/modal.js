@@ -217,12 +217,12 @@ document.querySelector('#form-ajout').addEventListener('submit', function (event
         throw new Error('Erreur de connexion');
       }
     })
-    .then(responseJson => {
-      const newWork = responseJson; // Récupère les données de la nouvelle œuvre ajoutée
+    .then(responsejson => {
+      const newWork = responsejson; // Récupère les données de la nouvelle œuvre ajoutée
 
       // Ajoute la nouvelle œuvre à la galerie sans recharger la page
       const gallery = document.getElementById('gallery');
-      const newWorkHTML = genererHTML(newWork);
+      const newWorkHTML = genererHTML(newWork); //fonction dans home.js
       gallery.insertAdjacentHTML('beforeend', newWorkHTML);
 
       // Redirige vers la page d'accueil
