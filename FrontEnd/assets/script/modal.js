@@ -85,7 +85,6 @@ document.getElementById("retour").addEventListener("click", function () {
 });
 
 
-
 /*-------- remplis dynamiquement la modale Gallery Photo-----------------*/
 
 // fonction pour générer le modèle HTML d'un élément de la modale
@@ -213,12 +212,12 @@ document.querySelector('#form-ajout #valider').addEventListener('submit', functi
     .then(response => {  // Traite la réponse du serveur
       if (response.ok) {  // si la connexion réussit
         return response.json(); // Renvoie la réponse sous forme de JSON
-      } else { // sinon
+      } else { // si non
         throw new Error('Erreur de connexion');
       }
     })
-    .then(responsejson => {
-      const newWork = responsejson; // Récupère les données de la nouvelle œuvre ajoutée
+    .then(response => {
+      const newWork = response; // Récupère les données de la nouvelle œuvre ajoutée
 
       // Ajoute la nouvelle œuvre à la galerie sans recharger la page
       const gallery = document.getElementById('gallery');
