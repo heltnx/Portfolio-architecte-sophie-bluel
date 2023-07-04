@@ -188,7 +188,7 @@ imageInput.addEventListener('input', checkAllFieldsFilled);
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
 //cibler le formulaire
-document.querySelector('#form-ajout').addEventListener('submit', function (event) {
+document.querySelector('#form-ajout #valider').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupère les valeurs du formulaire
