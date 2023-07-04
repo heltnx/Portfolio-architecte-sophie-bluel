@@ -1,29 +1,3 @@
-// fonction pour authentifier l'utilisateur.
-function open_edition_fetch() {
-  const connected = localStorage.getItem("connected");
-  const elements = document.querySelectorAll(".modification");
-  elements.forEach(element => {
-    if (connected == "true") {
-      element.classList.add('modification-active');
-      // Utilise le jeton d'accès dans une autre requête ou pour effectuer des opérations
-      fetch('http://localhost:5678/api/users/login', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`, // Utilise le jeton d'accès dans l'en-tête Authorization
-        },
-        // Autres options de la requête
-      })
-        .then(response => {
-          // Traiter la réponse de l'API
-        })
-        .catch(error => {
-          // Gérer les erreurs
-        });
-    } else {
-      element.classList.remove('modification-active');
-    }
-  });
-}
-
 // fonction pour ouvrir la page avec le bandeau edition si login ok
 function open_edition() {
   const connected = localStorage.getItem("connected");
@@ -36,8 +10,6 @@ function open_edition() {
     }
   });
 }
-
-// Reste du code inchangé
 
 // Met à jour le lien "login/logout"
 function changelogin() {
