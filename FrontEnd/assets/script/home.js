@@ -1,9 +1,8 @@
-// fonction ouvrir la page avec le bandeau edition si login ok
-function open_edition() {
+// fonction pour authentifier l'utilisateur.
+function open_edition_fetch() {
   const connected = localStorage.getItem("connected");
   const elements = document.querySelectorAll(".modification");
   elements.forEach(element => {
-
     if (connected == "true") {
       element.classList.add('modification-active');
       // Utilise le jeton d'accès dans une autre requête ou pour effectuer des opérations
@@ -25,13 +24,11 @@ function open_edition() {
   });
 }
 
-
-// fonction ouvrir la page avec le bandeau edition si login ok
+// fonction pour ouvrir la page avec le bandeau edition si login ok
 function open_edition() {
   const connected = localStorage.getItem("connected");
   const elements = document.querySelectorAll(".modification");
   elements.forEach(element => {
-
     if (connected == "true") {
       element.classList.add('modification-active');
     } else {
@@ -39,6 +36,8 @@ function open_edition() {
     }
   });
 }
+
+// Reste du code inchangé
 
 // Met à jour le lien "login/logout"
 function changelogin() {
@@ -60,12 +59,11 @@ function changelogin() {
   }
 }
 
-
+//appel function "changelogin" passe sur "logout" sur "storage connected"
 function checkLoginStatus() {
   const connected = localStorage.getItem("connected");
 
   if (connected == "true") {
-//appel function "changelogin" passe sur "logout" sur "storage connected"
 
 window.addEventListener("load", changelogin); // au chargement de la page
 window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
@@ -73,16 +71,6 @@ window.addEventListener("localStorage", changelogin); // au changement de "local
 open_edition(); // appel function replace modification "active"
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 checkLoginStatus()
 // fonction pour récupérer les éléments dans l'api
