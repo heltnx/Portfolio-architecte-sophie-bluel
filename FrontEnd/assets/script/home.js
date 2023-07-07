@@ -44,7 +44,8 @@ open_edition(); // appel function replace modification "active"
   }
 }
 
-checkLoginStatus()
+checkLoginStatus()  // appel function statut connected
+
 // fonction pour récupérer les éléments dans l'api
 let works = [];
 async function getworks() {

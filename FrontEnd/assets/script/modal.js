@@ -157,10 +157,12 @@ fileUpload.addEventListener("change", function (event) {
   reader.onload = function (event) {
     selectedImage.src = event.target.result;
     selectedImage.style.display = "inline"; // Affiche l'image sélectionnée
+    document.getElementById("picture-ajout").style.display = "none"; // Masque l'élément "picture-ajout"
   };
 
   reader.readAsDataURL(file);
 });
+
 
 /** ---- verification remplissage des champs / bouton coloré  ----------------------------------------------*/
 
