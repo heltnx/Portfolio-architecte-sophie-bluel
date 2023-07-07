@@ -35,6 +35,7 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
     
       localStorage.setItem("connected", "true"); // stock les éléments en local 
       localStorage.setItem("userId", userId); // stock l'id utilisateur en local 
+      localStorage.setItem('token', accessToken); // stock le jeton token en local
 
       window.location.href = 'index.html'; // redirige vers la page d'accueil
     })

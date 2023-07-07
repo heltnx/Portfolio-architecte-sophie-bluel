@@ -189,7 +189,7 @@ imageInput.addEventListener('input', checkAllFieldsFilled);
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
 //cibler le formulaire
-document.querySelector('#form-ajout #valider').addEventListener('submit', function (event) {
+document.getElementById('form-ajout').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupère les valeurs du formulaire
@@ -204,10 +204,12 @@ document.querySelector('#form-ajout #valider').addEventListener('submit', functi
   formData.append('category', category);
 
   // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
-  fetch('http://localhost:5678/api/works', {
+  const token = localStorage.getItem('token');// récupère le token en local
+
+  fetch('http://localhost:5678/api/works', { // requête methode post
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${accessToken}`
+      Authorization: `Bearer ${token}` 
     },
     body: formData
   })
@@ -225,8 +227,5 @@ document.querySelector('#form-ajout #valider').addEventListener('submit', functi
       const gallery = document.getElementById('gallery');
       const newWorkHTML = genererHTML(newWork); //fonction dans home.js
       gallery.insertAdjacentHTML('beforeend', newWorkHTML);
-
-      // Redirige vers la page d'accueil
-      window.location.href = 'index.html';
     })
 });
