@@ -209,7 +209,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
   formData.append('title', title);
   formData.append('category', category);
 
-  // Envoie une requête POST à l'API pour ajouter une nouvelle œuvre
+  // Envoie une requête POST à l'API pour ajouter une nouvelle Element
   const token = localStorage.getItem('token');// récupère le token en local
 
   fetch('http://localhost:5678/api/works', { // requête methode post
@@ -227,19 +227,19 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       }
     })
     .then(response => {
-      const newWork = response; // Récupère les données de la nouvelle œuvre ajoutée
+      const newWork = response; // Récupère les données de la nouvelle Element ajoutée
 
-      // Ajoute la nouvelle œuvre à la galerie sans recharger la page
+      // Ajoute la nouvelle Element à la galerie sans recharger la page
       const gallery = document.getElementById('gallery');
       const newWorkHTML = genererHTML(newWork); //fonction dans home.js
       gallery.insertAdjacentHTML('beforeend', newWorkHTML);
     })
 });
 
-/** ---- supprim oeuvre de l'api ----------------------------------------------*/
+/** ---- supprim Element de l'api ----------------------------------------------*/
 
 
-// Fonction pour supprimer une œuvre
+// Fonction pour supprimer une Element
 async function deleteWork(id) {
   const token = localStorage.getItem('token');// récupère le token en local
   return await fetch(`http://localhost:5678/api/works/${id}`, {
@@ -251,17 +251,17 @@ async function deleteWork(id) {
 
     .then(response => {
       if (response.ok) {
-        console.log(`Œuvre d'ID ${id} supprimée avec succès.`);
+        alert(`l'Element ${id} a bien été supprimé.`);
       } else {
-        console.error(`Erreur lors de la suppression de l'œuvre d'ID ${id}.`);
+        alert(`Erreur lors de la suppression de l'Element ${id}.`);
       }
     })
     .catch(error => {
-      console.error(`Une erreur s'est produite lors de la suppression de l'œuvre d'ID ${id}:`, error);
+      alert(`Une erreur s'est produite lors de la suppression de l'Element ${id}:`, error);
     });
 }
 
-// Fonction pour mettre à jour la galerie après la suppression d'une œuvre
+// Fonction pour mettre à jour la galerie après la suppression d'un Element
 
 async function updateGallery(id) {
   try {
@@ -277,11 +277,11 @@ async function updateGallery(id) {
     if (response.ok) {
       const galleryData = await response.json();
       works = galleryData.works;
-      gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
+      gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant le contenu
       works.forEach((element, index) => {
-        gallery_modale.innerHTML += genererHTMLmodale(element, index); // Générer le contenu HTML pour chaque élément en passant l'index
+        gallery_modale.innerHTML += genererHTMLmodale(element, index); // Générer le contenu HTML pour chaque élément avec l'index
       });
-
+      opengallery(false); // Ouvre la modale sans la fermer après la suppression d'un élément
     } else {
       throw new Error('Erreur lors de la récupération des données de la galerie après suppression.');
     }
@@ -302,10 +302,6 @@ gallery_modale.addEventListener('click', (event) => {
       .catch(error => {
         console.error('Une erreur s\'est produite lors de la suppression et de la mise à jour de la galerie:', error);
       });
-
-    // Supprimez les lignes suivantes qui appellent la fonction close_modal
-    // modal.removeEventListener('click', close_modal);
-    // modal.querySelector('.js-modal-close').removeEventListener('click', close_modal);
   }
 });
 
