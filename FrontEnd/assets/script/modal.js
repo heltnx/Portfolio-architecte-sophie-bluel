@@ -57,16 +57,20 @@ const open_modal = function (event) {
 }
 
 // Fonction pour "fermer la modale"
+let isModalOpen = false;
+
 const close_modal = function (event) {
-  if (modal === null) return; // Si la variable 'modal' est null, elle est déjà fermée, on ne fait rien.
+  if (modal === null || !isModalOpen) return; // Si la variable 'modal' est null ou la fenêtre modale n'est pas ouverte, on ne fait rien.
   event.preventDefault();
-  modal.style.display = "none"; // rend la modale invisible
+  modal.style.display = "none"; // Rend la modale invisible
   modal.setAttribute('aria-hidden', true); // Ajoute aria-hidden = true pour cacher la modale aux lecteurs d'écran
   modal.removeAttribute('aria-modal'); // Supprime l'attribut aria-modal pour indiquer que la modale n'est plus active
-  modal.removeEventListener('click', close_modal); // Supprime le click pour "fermer la modale"
-  modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le click pour "fermer la modale" sur le bouton
+  modal.removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale"
+  modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale" sur le bouton
   modal = null; // Réinitialise la variable 'modal' à null
-}
+  isModalOpen = false; // Met à jour l'état de la fenêtre modale
+};
+
 
 /* ouvrir la modale au click sur un lien des elements ayant cette class ".js-modal" */
 document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les éléments avec la classe 'js-modal'
@@ -85,10 +89,11 @@ document.getElementById("retour").addEventListener("click", function () {
 });
 
 
-/*-------- remplis dynamiquement la modale Gallery Photo-----------------*/
+/*-------- rempli dynamiquement la modale Gallery Photo-----------------*/
 
 // fonction pour générer le modèle HTML d'un élément de la modale
 function genererHTMLmodale(element, index) {
+  console.log("Index de l'élément :", index, element);
   // Ajouter la classe "active" uniquement si l'index est égal à 0
   const mooveClass = index === 0 ? "active" : "";
 
@@ -96,7 +101,7 @@ function genererHTMLmodale(element, index) {
     <article class="projet-modale">
       <div class="icon-action">
         <span class="icon-moove ${mooveClass}"><i class="fa-solid fa-arrows-up-down-left-right moove"></i></span>
-        <span class="icon-contain"><i id="trash-icon-modal-${index}" class="fa-solid fa-trash-can trash"></i></span>
+        <span class="icon-contain"><i id="trash-icon-modal-${index}" class="fa-solid fa-trash-can trash" data-index="${element.id}"></i></span>
       </div>
       <figure>
         <img src="${element.imageUrl}" alt="${element.title}">
@@ -110,9 +115,10 @@ function genererHTMLmodale(element, index) {
 const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la classe 'gallery-edit'
 
 async function showPhotoModal() {
-  await getworks(); // Appel de la fonction 'getworks' pour récupérer les données
-  works.forEach((element, index) => { // Parcours de chaque élément dans le tableau 'works'
-    gallery_modale.innerHTML += genererHTMLmodale(element, index); // Génère le contenu HTML pour chaque élément en passant l'index
+  await getworks();
+  gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
+  works.forEach((element, index) => {
+    gallery_modale.innerHTML += genererHTMLmodale(element, index);
   });
 }
 
@@ -209,7 +215,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
   fetch('http://localhost:5678/api/works', { // requête methode post
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}` 
+      Authorization: `Bearer ${token}`
     },
     body: formData
   })
@@ -229,3 +235,79 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       gallery.insertAdjacentHTML('beforeend', newWorkHTML);
     })
 });
+
+/** ---- supprim oeuvre de l'api ----------------------------------------------*/
+
+
+// Fonction pour supprimer une œuvre
+async function deleteWork(id) {
+  const token = localStorage.getItem('token');// récupère le token en local
+  return await fetch(`http://localhost:5678/api/works/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  })
+
+    .then(response => {
+      if (response.ok) {
+        console.log(`Œuvre d'ID ${id} supprimée avec succès.`);
+      } else {
+        console.error(`Erreur lors de la suppression de l'œuvre d'ID ${id}.`);
+      }
+    })
+    .catch(error => {
+      console.error(`Une erreur s'est produite lors de la suppression de l'œuvre d'ID ${id}:`, error);
+    });
+}
+
+// Fonction pour mettre à jour la galerie après la suppression d'une œuvre
+
+async function updateGallery(id) {
+  try {
+    const token = localStorage.getItem('token');// récupère le token en local
+    const response = await fetch('http://localhost:5678/api/works', {
+
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    });
+
+    if (response.ok) {
+      const galleryData = await response.json();
+      works = galleryData.works;
+      gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
+      works.forEach((element, index) => {
+        gallery_modale.innerHTML += genererHTMLmodale(element, index); // Générer le contenu HTML pour chaque élément en passant l'index
+      });
+
+    } else {
+      throw new Error('Erreur lors de la récupération des données de la galerie après suppression.');
+    }
+  } catch (error) {
+    console.error('Une erreur s\'est produite lors de la récupération des données de la galerie après suppression:', error);
+  }
+}
+
+
+// Gestionnaire d'événement pour le clic sur l'icône de corbeille
+gallery_modale.addEventListener('click', (event) => {
+  if (event.target.classList.contains('trash')) {
+    const id = event.target.getAttribute('data-index');
+    deleteWork(id)
+      .then(() => {
+        return updateGallery(id);
+      })
+      .catch(error => {
+        console.error('Une erreur s\'est produite lors de la suppression et de la mise à jour de la galerie:', error);
+      });
+
+    // Supprimez les lignes suivantes qui appellent la fonction close_modal
+    // modal.removeEventListener('click', close_modal);
+    // modal.querySelector('.js-modal-close').removeEventListener('click', close_modal);
+  }
+});
+
+
+
