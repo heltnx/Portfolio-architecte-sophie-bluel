@@ -28,10 +28,8 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
       }
     })
     .then(userData => {
-      accessToken = userData.token; // Récupère le jeton d'accès de la réponse JSON
-    
-      localStorage.setItem("connected", "true"); // stock les éléments en local 
-      localStorage.setItem('token', accessToken); // stock le jeton token en local
+      localStorage.setItem("connected", "true"); // stock l'état connecté en local 
+      localStorage.setItem('token', userData.token); // stock le jeton token en local
 
       window.location.href = 'index.html'; // redirige vers la page d'accueil
     })

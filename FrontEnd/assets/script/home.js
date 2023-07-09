@@ -1,3 +1,5 @@
+/* -- gestion de l'affichage des elements d'edition si login connected --*/
+
 // fonction pour ouvrir la page avec le bandeau edition si login ok
 function open_edition() {
   const connected = localStorage.getItem("connected");
@@ -47,6 +49,7 @@ open_edition(); // appel function replace modification "active"
 checkLoginStatus()  // appel function statut connected
 
 
+/* ---- récuperer et afficher dynamiquement les éléménts dans la gallery via l'api ---*/
 
 // fonction pour récupérer les éléments dans l'api
 let works = []; //déclaration d'un tableau vide
@@ -110,13 +113,13 @@ async function showcategories() {
 /**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
 
 function filterworks(event) {
-  const categoryId = event.target.id; // Récupère l'ID de la catégorie cliquée
+  const categoryId = event.target.id; // Cible l'ID de la catégorie cliquée
 
-  // récupère les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
+  // Cible les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
   const categorie = works.filter(element => element.categoryId == categoryId || categoryId == 0);
 
   // Générer le contenu HTML pour les éléments filtrés
-  let galleryHTML = ""; // initialise un tableau vide
+  let galleryHTML = ""; // initialise une gallery vide
   categorie.forEach(element => { // Parcourt les éléments filtrés 
     galleryHTML += genererHTML(element) // génère le contenu HTML correspondant à chaque élément.
   });
@@ -125,8 +128,8 @@ function filterworks(event) {
   gallery.innerHTML = galleryHTML;
 
   // Met à jour l'affichage des boutons actifs
-  const buttons = filtres.getElementsByTagName("button");
-  for (let i = 0; i < buttons.length; i++) {
+  const buttons = filtres.getElementsByTagName("button"); // cible tous les butons de la div filtre 
+  for (let i = 0; i < buttons.length; i++) { // parcours l’integralité des boutons
     buttons[i].classList.toggle("active", buttons[i] === event.target);
   }
 }
