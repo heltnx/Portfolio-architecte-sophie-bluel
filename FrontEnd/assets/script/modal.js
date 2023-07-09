@@ -57,10 +57,7 @@ const open_modal = function (event) {
 }
 
 // Fonction pour "fermer la modale"
-let isModalOpen = false;
-
 const close_modal = function (event) {
-  if (modal === null || !isModalOpen) return; // Si la variable 'modal' est null ou la fenêtre modale n'est pas ouverte, on ne fait rien.
   event.preventDefault();
   modal.style.display = "none"; // Rend la modale invisible
   modal.setAttribute('aria-hidden', true); // Ajoute aria-hidden = true pour cacher la modale aux lecteurs d'écran
@@ -68,7 +65,6 @@ const close_modal = function (event) {
   modal.removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale"
   modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale" sur le bouton
   modal = null; // Réinitialise la variable 'modal' à null
-  isModalOpen = false; // Met à jour l'état de la fenêtre modale
 };
 
 
