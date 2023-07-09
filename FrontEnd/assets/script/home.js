@@ -46,8 +46,10 @@ open_edition(); // appel function replace modification "active"
 
 checkLoginStatus()  // appel function statut connected
 
+
+
 // fonction pour récupérer les éléments dans l'api
-let works = [];
+let works = []; //déclaration d'un tableau vide
 async function getworks() {
   const reponse = await fetch("http://localhost:5678/api/works"); // Envoi une requête GET à l'API pour récupérer les données
   works = await reponse.json(); // Conversion de la réponse en format JSON et stockage dans la variable 'works'

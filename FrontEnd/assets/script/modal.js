@@ -186,8 +186,6 @@ function checkAllFieldsFilled() {
 titleInput.addEventListener('input', checkAllFieldsFilled);
 imageInput.addEventListener('input', checkAllFieldsFilled);
 
-
-
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
 //cibler le formulaire
@@ -232,10 +230,9 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     })
 });
 
-/** ---- supprim Element de l'api ----------------------------------------------*/
+/** ---- supprim Element de l'api DELETE Methode----------------------------------------------*/
 
-
-// Fonction pour supprimer une Element
+// Fonction pour supprimer un Element
 async function deleteWork(id) {
   const token = localStorage.getItem('token');// récupère le token en local
   return await fetch(`http://localhost:5678/api/works/${id}`, {

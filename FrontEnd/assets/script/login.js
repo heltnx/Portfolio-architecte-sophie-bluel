@@ -1,5 +1,3 @@
-let accessToken;
-
 //cibler le formulaire
 document.querySelector('#loginForm').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
@@ -31,10 +29,8 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
     })
     .then(userData => {
       accessToken = userData.token; // Récupère le jeton d'accès de la réponse JSON
-      const userId = userData.userId;
     
       localStorage.setItem("connected", "true"); // stock les éléments en local 
-      localStorage.setItem("userId", userId); // stock l'id utilisateur en local 
       localStorage.setItem('token', accessToken); // stock le jeton token en local
 
       window.location.href = 'index.html'; // redirige vers la page d'accueil
