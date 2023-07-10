@@ -1,52 +1,31 @@
-/* -- gestion de l'affichage des elements d'edition si login connected --*/
+// Vérifie si l'utilisateur est connecté
+const connected = localStorage.getItem("connected");
 
-// fonction pour ouvrir la page avec le bandeau edition si login ok
-function open_edition() {
-  const connected = localStorage.getItem("connected");
+// Fonction pour ouvrir la page avec le bandeau "édition" si la connexion est réussie
+function openEdition() {
   const elements = document.querySelectorAll(".modification");
-  elements.forEach(element => {
-    if (connected == "true") {
+  if (connected === "true") {
+    elements.forEach(element => {
       element.classList.add('modification-active');
-    } else {
-      element.classList.remove('modification-active');
-    }
-  });
+    });
+  }
 }
 
 // Met à jour le lien "login/logout"
-function changelogin() {
+function changeLogin() {
   const loginLink = document.getElementById("login-link");
-  const connected = localStorage.getItem("connected");
-
-  if (connected) {
-    loginLink.innerText = "Logout";
-    loginLink.addEventListener("click", function () {
-      // Effacer l'état de connexion du localStorage lors du clic sur le lien de déconnexion
-      localStorage.removeItem("connected");
-    });
-  } else {
-    loginLink.innerText = "Login";
-    loginLink.removeEventListener("click", function () {
-      // Supprime l'événement de clic sur le lien de déconnexion s'il existe
-      localStorage.removeItem("connected");
-    });
-  }
+  // connected ? si vrai logout : si faux login
+  loginLink.innerText = connected ? "Logout" : "Login";
+  // lors du clic sur le lien de déconnexion
+  loginLink.addEventListener("click", function () { 
+    // Efface l'état de connexion du localStorage 
+    localStorage.removeItem("connected");
+  });
 }
 
-//appel function "changelogin" passe sur "logout" sur "storage connected"
-function checkLoginStatus() {
-  const connected = localStorage.getItem("connected");
-
-  if (connected == "true") {
-
-window.addEventListener("load", changelogin); // au chargement de la page
-window.addEventListener("localStorage", changelogin); // au changement de "localStorage"
-
-open_edition(); // appel function replace modification "active"
-  }
-}
-
-checkLoginStatus()  // appel function statut connected
+// Appelle des fonctions pour activer les éléments d'édition
+    changeLogin()
+    openEdition(); 
 
 
 /* ---- récuperer et afficher dynamiquement les éléménts dans la gallery via l'api ---*/
