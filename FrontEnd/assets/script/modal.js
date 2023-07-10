@@ -226,6 +226,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     })
     .then(response => {
       const newWork = response; // Récupère les données de le l'élement ajouté
+      // Ajoute le nouvel Element à la galerie sans recharger la page
       const gallery = document.getElementById('gallery');
       const newWorkHTML = genererHTML(newWork); // fonction dans home.js
       // insère le contenu HTML à l'intérieur de l'élément cible, 
