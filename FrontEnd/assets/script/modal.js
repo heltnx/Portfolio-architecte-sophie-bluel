@@ -237,7 +237,22 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
 
 /** ---- supprim Element de l'api DELETE Methode----------------------------------------------*/
 
-// Fonction pour supprimer un Element
+// Gestionnaire d'événement pour le clic sur l'icône de corbeille
+gallery_modale.addEventListener('click', (event) => {
+  if (event.target.classList.contains('trash')) {
+    const id = event.target.getAttribute('data-index');
+    deleteWork(id)
+      .then(() => {
+        return updateGallery(id);
+      })
+      .catch(error => {
+        console.error('Une erreur s\'est produite lors de la suppression et de la mise à jour de la galerie:', error);
+      });
+  }
+});
+
+
+// Fonction pour supprimer un Element de l'api
 async function deleteWork(id) {
   const token = localStorage.getItem('token');// récupère le token en local
   return await fetch(`http://localhost:5678/api/works/${id}`, {
@@ -260,7 +275,6 @@ async function deleteWork(id) {
 }
 
 // Fonction pour mettre à jour la galerie après la suppression d'un Element
-
 async function updateGallery(id) {
   try {
     const token = localStorage.getItem('token');// récupère le token en local
@@ -289,19 +303,6 @@ async function updateGallery(id) {
 }
 
 
-// Gestionnaire d'événement pour le clic sur l'icône de corbeille
-gallery_modale.addEventListener('click', (event) => {
-  if (event.target.classList.contains('trash')) {
-    const id = event.target.getAttribute('data-index');
-    deleteWork(id)
-      .then(() => {
-        return updateGallery(id);
-      })
-      .catch(error => {
-        console.error('Une erreur s\'est produite lors de la suppression et de la mise à jour de la galerie:', error);
-      });
-  }
-});
 
 
 
