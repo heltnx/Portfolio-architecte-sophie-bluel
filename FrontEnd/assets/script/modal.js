@@ -147,21 +147,24 @@ async function showFormCategory() {
 showFormCategory(); // affiche les données dans la liste
 
 
+
 /** ---- ajout de la photo dans le formulaire ajout ----------------------------------------------*/
 
 const fileUpload = document.getElementById("file-upload");
 const selectedImage = document.getElementById("selected-image");
 
+// au changement dans le champ d'upload de fichier
 fileUpload.addEventListener("change", function (event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
+  const file = event.target.files[0];  // Récupère le fichier sélectionné
+  const reader = new FileReader();  // Crée une instance de FileReader
 
+  // Définit la fonction de rappel pour charger le contenu du fichier
   reader.onload = function (event) {
-    selectedImage.src = event.target.result;
-    selectedImage.style.display = "inline"; // Affiche l'image sélectionnée
-    document.getElementById("picture-ajout").style.display = "none"; // Masque l'élément "picture-ajout"
+    selectedImage.src = event.target.result; // attribut src avec le contenu du fichier
+    selectedImage.style.display = "inline"; // visible avec display inline
+    document.getElementById("picture-ajout").style.display = "none"; // masque "picture ajout"
   };
-
+  // Lit le contenu du fichier en tant que URL de données
   reader.readAsDataURL(file);
 });
 
@@ -185,6 +188,7 @@ function checkAllFieldsFilled() {
 // Écouter l'événement "input" pour les champs du formulaire
 titleInput.addEventListener('input', checkAllFieldsFilled);
 imageInput.addEventListener('input', checkAllFieldsFilled);
+
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
@@ -229,6 +233,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       gallery.insertAdjacentHTML('beforeend', newWorkHTML);
     })
 });
+
 
 /** ---- supprim Element de l'api DELETE Methode----------------------------------------------*/
 
