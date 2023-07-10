@@ -207,7 +207,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
   formData.append('title', title);
   formData.append('category', category);
 
-  // Envoie une requête POST à l'API pour ajouter une nouvelle Element
+  // Envoie une requête POST à l'API pour ajouter un nouvel Element
   const token = localStorage.getItem('token');// récupère le token en local
 
   fetch('http://localhost:5678/api/works', { // requête methode post
@@ -225,12 +225,11 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       }
     })
     .then(response => {
-      const newWork = response; // Récupère les données de la nouvelle Element ajoutée
-
-      // Ajoute la nouvelle Element à la galerie sans recharger la page
+      const newWork = response; // Récupère les données de le l'élement ajouté
       const gallery = document.getElementById('gallery');
-      const newWorkHTML = genererHTML(newWork); //fonction dans home.js
-      gallery.insertAdjacentHTML('beforeend', newWorkHTML);
+      const newWorkHTML = genererHTML(newWork); // fonction dans home.js
+      // insère le contenu HTML à l'intérieur de l'élément cible, 
+      gallery.insertAdjacentHTML('beforeend', newWorkHTML); // juste avant la fermeture de la balise.
     })
 });
 
