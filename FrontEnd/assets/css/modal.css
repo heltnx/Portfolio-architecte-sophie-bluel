@@ -41,7 +41,6 @@
     border-radius: 10px;
     overflow: auto;
     max-width: calc(100vw - 110px);
-    max-height: calc(100vh - 120px);
     animation: slideFromTop .3s both;
 }
 
@@ -59,7 +58,6 @@
 
 .js-modal-close {
     cursor: pointer;
-    font-size: 18px;
     background: transparent;
     border: transparent;
     position: absolute;
@@ -93,7 +91,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap: 10px;
-    grid-row-gap: 15px;
+    grid-row-gap: 10px;
     margin: 0 auto;
 }
 
@@ -109,10 +107,16 @@
 .edit {
     text-align: left;
     margin-top: 3px;
+    color: #000;
+    font-family: Work Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .modal-gallery h2 {
-    font-family: 'work', sans-serif;
+    font-family: 'Work', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
@@ -120,15 +124,15 @@
     text-align: center;
     color: #000000;
     padding-top: 50px;
-    padding-bottom: 40px;
+    padding-bottom: 45px;
 }
 
 hr {
     width: 70%;
     height: 0;
     border: 0.5px solid #969696;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 27px;
+    margin-bottom: 37px;
 }
 
 .modal-gallery button {
@@ -150,6 +154,7 @@ hr {
     cursor: pointer;
     display: block;
     margin: 25px;
+    margin-bottom: 30px;
     font-family: 'Syne', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -265,6 +270,7 @@ hr {
 
 #ajout form hr {
     width: 100%;
+    margin: 50px 0;
 }
 
 #valider {
