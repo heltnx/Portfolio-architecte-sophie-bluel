@@ -174,11 +174,13 @@ fileUpload.addEventListener("change", function (event) {
 // Sélection des champs du formulaire
 const titleInput = document.getElementById('titre');
 const imageInput = document.getElementById('file-upload');
+const selectInput = document.getElementById('form-category')
+
 const validerButton = document.getElementById('valider');
 
 // Fonction pour vérifier si tous les champs sont remplis
 function checkAllFieldsFilled() {
-  if (titleInput.value.trim() !== '' && imageInput.files.length > 0) {
+  if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
     validerButton.style.backgroundColor = '#1D6154'; // Modifier la couleur du bouton si les champs sont remplis
   } else {
     validerButton.style.backgroundColor = ''; // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
@@ -188,6 +190,7 @@ function checkAllFieldsFilled() {
 // Écouter l'événement "input" pour les champs du formulaire
 titleInput.addEventListener('input', checkAllFieldsFilled);
 imageInput.addEventListener('input', checkAllFieldsFilled);
+selectInput.addEventListener('input', checkAllFieldsFilled);
 
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
@@ -241,13 +244,8 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
 gallery_modale.addEventListener('click', (event) => {
   if (event.target.classList.contains('trash')) {
     const id = event.target.getAttribute('data-index');
-    deleteWork(id)
-      .then(() => {
-        return updateGallery(id);
-      })
-      .catch(error => {
-        console.error('Une erreur s\'est produite lors de la suppression et de la mise à jour de la galerie:', error);
-      });
+    event.preventDefault();
+    deleteWork(id);
   }
 });
 
@@ -255,51 +253,18 @@ gallery_modale.addEventListener('click', (event) => {
 // Fonction pour supprimer un Element de l'api
 async function deleteWork(id) {
   const token = localStorage.getItem('token');// récupère le token en local
-  return await fetch(`http://localhost:5678/api/works/${id}`, {
+  const response = await fetch(`http://localhost:5678/api/works/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`
-    },
-  })
-
-    .then(response => {
-      if (response.ok) {
-        alert(`l'Element ${id} a bien été supprimé.`);
-      } else {
-        alert(`Erreur lors de la suppression de l'Element ${id}.`);
-      }
-    })
-    .catch(error => {
-      alert(`Une erreur s'est produite lors de la suppression de l'Element ${id}:`, error);
-    });
-}
-
-// Fonction pour mettre à jour la galerie après la suppression d'un Element
-async function updateGallery(id) {
-  try {
-    const token = localStorage.getItem('token');// récupère le token en local
-    const response = await fetch('http://localhost:5678/api/works', {
-
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    });
-
-    if (response.ok) {
-      const galleryData = await response.json();
-      works = galleryData.works;
-      gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant le contenu
-      works.forEach((element, index) => {
-        gallery_modale.innerHTML += genererHTMLmodale(element, index); // Générer le contenu HTML pour chaque élément avec l'index
-      });
-      opengallery(false); // Ouvre la modale sans la fermer après la suppression d'un élément
-    } else {
-      throw new Error('Erreur lors de la récupération des données de la galerie après suppression.');
     }
-  } catch (error) {
-    console.error('Une erreur s\'est produite lors de la récupération des données de la galerie après suppression:', error);
+  });
+  if (response.ok) {
+    alert(`l'Element ${id} a bien été supprimé.`);
+  } else {
+    alert(`Erreur lors de la suppression de l'Element ${id}.`);
   }
+
 }
 
 
