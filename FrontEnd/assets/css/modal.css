@@ -14,7 +14,7 @@
     font-family: 'Syne', sans-serif;
 }
 
-.fond-modale{
+.fond-modale {
     position: fixed;
     background: rgba(0, 0, 0, 0.517);
     top: 0;
@@ -24,6 +24,7 @@
     width: 100%;
     height: 100%;
 }
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -197,7 +198,7 @@ hr {
     position: absolute;
 }
 
-#picture-ajout{
+#picture-ajout {
     cursor: pointer;
     width: 173px;
     background: rgba(203, 214, 220, 1);
@@ -222,7 +223,7 @@ hr {
 
 #file-upload {
     display: none;
-  }
+}
 
 /*--------formulaire---------*/
 
@@ -257,16 +258,16 @@ hr {
 }
 
 #titre {
-   text-indent: 10px;
+    text-indent: 10px;
 }
 
 #form-category {
     text-indent: 3px;
-  }
+}
 
-  #form-category option {
-   padding-left: 10px;
-  }
+#form-category option {
+    padding-left: 10px;
+}
 
 #ajout form hr {
     width: 100%;
@@ -306,26 +307,25 @@ hr {
     display: none;
 }
 
-.icon-moove.active{
+.icon-moove.active {
     display: block;
     background: #000000;
     border-radius: 3px;
-    padding:4px ;
+    padding: 4px;
     font-size: 9px;
     margin-right: 3px;
 }
 
-.icon-contain{
+.icon-contain {
     background: #000000;
     border-radius: 3px;
-    padding:4px ;
+    padding: 4px;
     font-size: 9px;
 }
 
 
-.moove::before, .trash::before {
+.moove::before,
+.trash::before {
     cursor: pointer;
     color: #FFFFFF;
 }
-
-
