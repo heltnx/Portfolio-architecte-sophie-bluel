@@ -3,11 +3,13 @@ const connected = localStorage.getItem("connected");
 
 // Fonction pour ouvrir la page avec le bandeau "édition" si la connexion est réussie
 function openEdition() {
+  const filtres = document.querySelector(".filtres");
   const elements = document.querySelectorAll(".modification");
   if (connected === "true") {
     elements.forEach(element => {
       element.classList.add('modification-active');
     });
+    filtres.classList.add('filtres-hidden');
   }
 }
 
