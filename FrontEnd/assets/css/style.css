@@ -295,8 +295,7 @@ li:hover,
 }
 
 #introduction figure {
-	width: 474px;
-	height: 355px;
+	width: 48%;
 	flex-shrink: 0;
 	margin-bottom: 60px;
 	margin-right: 72px;
