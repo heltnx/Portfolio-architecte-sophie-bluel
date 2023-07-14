@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sophie Bluel - Architecte d'intérieur - login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Work+Sans:wght@500;600&display=swap" rel="stylesheet"> 
-        <meta name="description" content="">
-        <script src="https://kit.fontawesome.com/cb5e514250.js" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/login.css">
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sophie Bluel - Architecte d'intérieur - login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Work+Sans:wght@500;600&display=swap"
+        rel="stylesheet">
+    <meta name="description" content="">
+    <script src="https://kit.fontawesome.com/cb5e514250.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
+</head>
+
+<body>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
@@ -35,11 +39,13 @@
 
                 <label for="password">Mot de passe:</label>
                 <input type="password" id="password" name="password">
-                
-                <input class="btn" type="submit" value="Se connecter">
-              </form>
 
-              <a href="/mot-de-passe-oublie" class="oublie">Mot de passe oublié</a>
+                <input class="btn" type="submit" value="Se connecter">
+            </form>
+
+            <div id="errorContainer" ></div>
+
+            <a href="/mot-de-passe-oublie" class="oublie">Mot de passe oublié</a>
         </section>
     </main>
     <footer>
@@ -51,4 +57,5 @@
     </footer>
     <script src="assets/script/login.js"></script>
 </body>
+
 </html>

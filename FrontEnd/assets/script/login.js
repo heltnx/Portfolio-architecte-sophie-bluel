@@ -34,8 +34,31 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
       window.location.href = 'index.html'; // redirige vers la page d'accueil
     })
     .catch(error => {
-      console.log('Une erreur s\'est produite :', error);
-      alert(error.message);
+      errorContainer.innerHTML = `
+        <span>${error.message}</span>
+        <button class="error-close">OK</button>
+      `;
+      errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
+    
+      const errorCloseButton = errorContainer.querySelector(".error-close");
+      errorCloseButton.addEventListener("click", resetError);
     });
+    
 });
 
+// Fonction exécutée lorsque le DOM est complètement chargé
+document.addEventListener("DOMContentLoaded", function() {
+  // Récupération des références aux éléments de formulaire
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+
+  // Ajout des écouteurs d'événements pour la réinitialisation de l'erreur
+  emailInput.addEventListener("input", resetError);
+  passwordInput.addEventListener("input", resetError);
+});
+
+// Fonction de réinitialisation de l'erreur
+function resetError() {
+  errorContainer.classList.remove("show-error");
+  errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
+}
