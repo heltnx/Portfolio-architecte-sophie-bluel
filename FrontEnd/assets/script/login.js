@@ -46,17 +46,6 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
     
 });
 
-// Fonction exécutée lorsque le DOM est complètement chargé
-document.addEventListener("DOMContentLoaded", function() {
-  // Récupération des références aux éléments de formulaire
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-
-  // Ajout des écouteurs d'événements pour la réinitialisation de l'erreur
-  emailInput.addEventListener("input", resetError);
-  passwordInput.addEventListener("input", resetError);
-});
-
 // Fonction de réinitialisation de l'erreur
 function resetError() {
   errorContainer.classList.remove("show-error");
