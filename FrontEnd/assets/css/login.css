@@ -53,27 +53,6 @@ body {
     padding: 0 20px;
 }
 
-.show-error {
-    margin: 10px 0 20px 0;
-    color: #b1673cfe;
-    padding: 10px;
-    font-family: 'Work Sans';
-    font-weight: 800;
-    font-size: 16px;
-  }
-  .error-close {
-    background-color:#1D6154 ;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-left: 5px;
-    padding: 5px 10px;
-  }
-
 #login .btn {
     width: 50%;
     min-width: fit-content;

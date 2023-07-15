@@ -260,14 +260,27 @@ async function deleteWork(id) {
     }
   });
   if (response.ok) {
-    alert(`l'Element ${id} a bien été supprimé.`);
+    const supprimOk = document.getElementById('supprimOK')
+    const suprimCloseButton = supprimOk.querySelector(".supprim-close");
+
+    supprimOk.innerHTML = `
+        <span>L'élément ${id} a bien été supprimé.</span>
+        <span class="supprim-close">OK</span>
+      `;
+      supprimOk.classList.add("show-error"); // Ajouter la class "show-error"
+      suprimCloseButton.addEventListener("click", () => {
+        supprimOk.remove(); // Supprimer l'élément supprimOk
+      });
   } else {
-    alert(`Erreur lors de la suppression de l'Element ${id}.`);
+    supprimOk.innerHTML = `
+        <span>Erreur lors de la suppression de l'élément ${id}</span>
+        <span class="supprim-close">OK</span>
+      `;
+      supprimOk.classList.add("show-error"); // Ajouter la class "show-error"
+      suprimCloseButton.addEventListener("click", () => {
+        supprimOk.remove(); // Supprimer l'élément supprimOk
+      });
+      
   }
-
 }
-
-
-
-
 

@@ -191,6 +191,7 @@ article {
 	position: relative;
 	top: 35px;
 	left: 62%;
+	width: fit-content;
 }
 
 .modif i,
@@ -381,6 +382,43 @@ li:hover,
 .gallery img {
 	width: 100%;
 }
+/*----------- Gestion messages Formulaires */
+
+.show-error {
+    margin: 10px 0 20px 0;
+    color: #b1673cfe;
+    padding: 10px;
+    font-family: 'Work Sans';
+    font-weight: 800;
+    font-size: 16px;
+	z-index: 5;
+  }
+  
+  .error-close {
+    background-color:#1D6154 ;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+    padding: 5px 10px;
+  }
+
+  .supprim-close{
+	background-color:#1D6154 ;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+    padding: 3px 6px;
+  }
 
 /*---- formulaire de contact -------------*/
 
