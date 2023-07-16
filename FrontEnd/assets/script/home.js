@@ -25,7 +25,7 @@ function changeLogin() {
   });
 }
 
-// Appelle des fonctions pour activer les éléments d'édition
+// Appel des fonctions pour activer les éléments d'édition
     changeLogin()
     openEdition(); 
 
