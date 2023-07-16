@@ -65,6 +65,8 @@ const close_modal = function (event) {
   modal.removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale"
   modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale" sur le bouton
   modal = null; // Réinitialise la variable 'modal' à null
+  // redirection vers index.html
+  window.location.href = "index.html";
 };
 
 
@@ -195,7 +197,17 @@ selectInput.addEventListener('input', checkAllFieldsFilled);
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
-//cibler le formulaire
+// Déclaration de la fonction pour réinitialiser les valeurs des champs du formulaire
+function resetForm() {
+  document.getElementById('form-ajout').reset(); // Réinitialise le formulaire
+  const selectedImage = document.getElementById('selected-image');
+  selectedImage.src = ''; // Réinitialise l'image sélectionnée
+  selectedImage.style.display = 'none'; // Masque l'image sélectionnée
+  document.getElementById('picture-ajout').style.display = 'inline'; // Affiche "picture ajout"
+  checkAllFieldsFilled(); // Vérifie à nouveau si tous les champs sont remplis
+}
+
+// Ajout de l'écouteur d'événement sur la soumission du formulaire
 document.getElementById('form-ajout').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
 
@@ -211,32 +223,28 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
   formData.append('category', category);
 
   // Envoie une requête POST à l'API pour ajouter un nouvel Element
-  const token = localStorage.getItem('token');// récupère le token en local
+  const token = localStorage.getItem('token');
 
-  fetch('http://localhost:5678/api/works', { // requête methode post
+  fetch('http://localhost:5678/api/works', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`
     },
     body: formData
   })
-  .then(response => response.json()) // réponse en json
-  .then(newWork => {
-    opengallery();
-    showPhotoModal();
-    // Ajoute le nouvel élément à la galerie sans recharger la page
-    const gallery = document.getElementById('gallery-edit');
-    const newWorkHTML = genererHTML(newWork); // fonction dans home.js
-    gallery.insertAdjacentHTML('beforeend', newWorkHTML); // insère le contenu HTML à l'intérieur de l'élément cible
-  })
-  .catch(error => {
-    console.error('Erreur lors de l\'ajout de l\'élément :', error);
-  });
-})
-
-// Réinitialise les valeurs du formulaire
-const form = document.getElementById('form-ajout');
-form.reset();
+    .then(response => response.json())
+    .then(newWork => {
+      opengallery();
+      showPhotoModal();
+      const gallery = document.getElementById('gallery-edit');
+      const newWorkHTML = genererHTML(newWork);
+      gallery.insertAdjacentHTML('beforeend', newWorkHTML);
+    })
+    .catch(error => {
+      console.error('Erreur lors de l\'ajout de l\'élément :', error);
+    });
+    resetForm(); // Réinitialise le formulaire
+});
 
 
 
