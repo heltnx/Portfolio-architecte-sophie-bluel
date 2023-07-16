@@ -220,22 +220,24 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     },
     body: formData
   })
-    .then(response => {  // Traite la réponse du serveur
-      if (response.ok) {  // si la connexion réussit
-        return response.json(); // Renvoie la réponse sous forme de JSON
-      } else { // si non
-        throw new Error('Erreur de connexion');
-      }
-    })
-    .then(response => {
-      const newWork = response; // Récupère les données de le l'élement ajouté
-      // Ajoute le nouvel Element à la galerie sans recharger la page
-      const gallery = document.getElementById('gallery');
-      const newWorkHTML = genererHTML(newWork); // fonction dans home.js
-      // insère le contenu HTML à l'intérieur de l'élément cible, 
-      gallery.insertAdjacentHTML('beforeend', newWorkHTML); // juste avant la fermeture de la balise.
-    })
-});
+  .then(response => response.json()) // réponse en json
+  .then(newWork => {
+    opengallery();
+    showPhotoModal();
+    // Ajoute le nouvel élément à la galerie sans recharger la page
+    const gallery = document.getElementById('gallery-edit');
+    const newWorkHTML = genererHTML(newWork); // fonction dans home.js
+    gallery.insertAdjacentHTML('beforeend', newWorkHTML); // insère le contenu HTML à l'intérieur de l'élément cible
+  })
+  .catch(error => {
+    console.error('Erreur lors de l\'ajout de l\'élément :', error);
+  });
+})
+
+// Réinitialise les valeurs du formulaire
+const form = document.getElementById('form-ajout');
+form.reset();
+
 
 
 /** ---- supprim Element de l'api DELETE Methode----------------------------------------------*/
@@ -249,38 +251,38 @@ gallery_modale.addEventListener('click', (event) => {
   }
 });
 
-
 // Fonction pour supprimer un Element de l'api
 async function deleteWork(id) {
-  const token = localStorage.getItem('token');// récupère le token en local
+  const token = localStorage.getItem('token'); // récupère le token en local
   const response = await fetch(`http://localhost:5678/api/works/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`
     }
   });
-  if (response.ok) {
-    const supprimOk = document.getElementById('supprimOK')
-    const suprimCloseButton = supprimOk.querySelector(".supprim-close");
 
-    supprimOk.innerHTML = `
-        <span>L'élément ${id} a bien été supprimé.</span>
-        <span class="supprim-close">OK</span>
-      `;
-      supprimOk.classList.add("show-error"); // Ajouter la class "show-error"
-      suprimCloseButton.addEventListener("click", () => {
-        supprimOk.remove(); // Supprimer l'élément supprimOk
-      });
+  const supprimOkid = document.getElementById('supprimOK');
+
+  if (response.ok) {
+    supprimOkid.innerHTML = `
+      <span>L'élément ${id} a bien été supprimé.</span>
+      <span class="supprim-close" id="supprim-bouton">OK</span>
+    `;
+    showPhotoModal();
+    supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
+    const okButton = document.querySelector('#supprim-bouton');
+    okButton.addEventListener("click", () => {
+      supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error"
+    });
   } else {
-    supprimOk.innerHTML = `
-        <span>Erreur lors de la suppression de l'élément ${id}</span>
-        <span class="supprim-close">OK</span>
-      `;
-      supprimOk.classList.add("show-error"); // Ajouter la class "show-error"
-      suprimCloseButton.addEventListener("click", () => {
-        supprimOk.remove(); // Supprimer l'élément supprimOk
-      });
-      
+    supprimOkid.innerHTML = `
+      <span>Erreur lors de la suppression de l'élément ${id}</span>
+      <span class="supprim-close" id="supprim-bouton">OK</span>
+    `;
+    supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
+    const okButton = document.querySelector('#supprim-bouton');
+    okButton.addEventListener("click", () => {
+      supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error"
+    });
   }
 }
-

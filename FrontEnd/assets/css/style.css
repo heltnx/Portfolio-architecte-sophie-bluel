@@ -419,6 +419,9 @@ li:hover,
     margin-left: 5px;
     padding: 3px 6px;
   }
+  .hide-error{
+	display: none;
+  }
 
 /*---- formulaire de contact -------------*/
 
