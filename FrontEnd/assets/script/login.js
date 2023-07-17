@@ -33,17 +33,20 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
 
       window.location.href = 'index.html'; // redirige vers la page d'accueil
     })
+
+    /*--- gestion du message d'erreur ---*/
+
     .catch(error => {
       errorContainer.innerHTML = `
         <span>${error.message}</span>
         <button class="error-close">OK</button>
       `;
       errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
-    
+
       const errorCloseButton = errorContainer.querySelector(".error-close");
       errorCloseButton.addEventListener("click", resetError);
     });
-    
+
 });
 
 // Fonction de réinitialisation de l'erreur
