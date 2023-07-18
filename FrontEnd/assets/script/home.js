@@ -19,15 +19,15 @@ function changeLogin() {
   // connected ? si vrai logout : si faux login
   loginLink.innerText = connected ? "Logout" : "Login";
   // lors du clic sur le lien de déconnexion
-  loginLink.addEventListener("click", function () { 
+  loginLink.addEventListener("click", function () {
     // Efface l'état de connexion du localStorage 
     localStorage.removeItem("connected");
   });
 }
 
 // Appel des fonctions pour activer les éléments d'édition
-    changeLogin()
-    openEdition(); 
+changeLogin()
+openEdition();
 
 
 /* ---- récuperer et afficher dynamiquement les éléménts dans la gallery via l'api ---*/
@@ -53,6 +53,7 @@ function genererHTML(element) {
 const gallery = document.querySelector(".gallery"); // Sélection du 1er élément HTML de la class 'gallery'
 
 async function showWorks() {
+  gallery.innerHTML = ""; // Vide le contenu de la galerie
   await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
   works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
     gallery.innerHTML += genererHTML(element) // Génére le contenu HTML pour chaque element
@@ -88,8 +89,8 @@ async function showcategories() {
   });
 }
 
- // Appel de la fonction 'showcategories' 
- showcategories(); // affiche les données dans la galerie
+// Appel de la fonction 'showcategories' 
+showcategories(); // affiche les données dans la galerie
 
 /**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
 
