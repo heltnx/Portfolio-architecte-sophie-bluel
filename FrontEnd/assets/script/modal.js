@@ -179,9 +179,11 @@ const validerButton = document.getElementById('valider');
 // Fonction pour vérifier si tous les champs sont remplis
 function checkAllFieldsFilled() {
   if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
-    validerButton.style.backgroundColor = '#1D6154'; // Modifier la couleur du bouton si les champs sont remplis
+    // Modifier la couleur du bouton si les champs sont remplis
+    validerButton.style.backgroundColor = '#1D6154'; 
   } else {
-    validerButton.style.backgroundColor = ''; // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
+    // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
+    validerButton.style.backgroundColor = ''; 
   }
 }
 
