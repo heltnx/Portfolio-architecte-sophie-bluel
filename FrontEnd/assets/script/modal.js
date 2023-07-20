@@ -89,7 +89,6 @@ document.getElementById("retour").addEventListener("click", function () {
 
 // fonction pour générer le modèle HTML d'un élément de la modale
 function genererHTMLmodale(element, index) {
-  console.log("Index de l'élément :", index, element);
   // Ajouter la classe "active" uniquement si l'index est égal à 0
   const mooveClass = index === 0 ? "active" : "";
 
@@ -110,12 +109,17 @@ function genererHTMLmodale(element, index) {
 // fonction pour afficher la galerie dans la modale
 const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la classe 'gallery-edit'
 
-async function showPhotoModal() {
-  await getworks();
-  gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
-  works.forEach((element, index) => {
-    gallery_modale.innerHTML += genererHTMLmodale(element, index);
-  });
+function showPhotoModal() {
+  getworks()
+    .then(() => {
+      gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
+      works.forEach((element, index) => {
+        gallery_modale.innerHTML += genererHTMLmodale(element, index);
+      });
+    })
+    .catch(error => {
+      console.error("Une erreur s'est produite lors du chargement des œuvres :", error);
+    });
 }
 
 // Appel de la fonction 'showPhotoModal' 
@@ -154,7 +158,7 @@ const selectedImage = document.getElementById("selected-image");
 // au changement dans le champ d'upload de fichier
 fileUpload.addEventListener("change", function (event) {
   const file = event.target.files[0];  // Récupère le fichier sélectionné
-  const reader = new FileReader();  // Crée une instance de FileReader
+  const reader = new FileReader();  // Crée un nouveau fichier FileReader
 
   // Définit la fonction de rappel pour charger le contenu du fichier
   reader.onload = function (event) {
@@ -177,20 +181,20 @@ const selectInput = document.getElementById('form-category')
 const validerButton = document.getElementById('valider');
 
 // Fonction pour vérifier si tous les champs sont remplis
-function checkAllFieldsFilled() {
+function checkAllFieldsOK() {
   if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
     // Modifier la couleur du bouton si les champs sont remplis
-    validerButton.style.backgroundColor = '#1D6154'; 
+    validerButton.style.backgroundColor = '#1D6154';
   } else {
     // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
-    validerButton.style.backgroundColor = ''; 
+    validerButton.style.backgroundColor = '';
   }
 }
 
 // Écouter l'événement "input" pour les champs du formulaire
-titleInput.addEventListener('input', checkAllFieldsFilled);
-imageInput.addEventListener('input', checkAllFieldsFilled);
-selectInput.addEventListener('input', checkAllFieldsFilled);
+titleInput.addEventListener('input', checkAllFieldsOK);
+imageInput.addEventListener('input', checkAllFieldsOK);
+selectInput.addEventListener('input', checkAllFieldsOK);
 
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
@@ -202,7 +206,7 @@ function resetForm() {
   selectedImage.src = ''; // Réinitialise l'image sélectionnée
   selectedImage.style.display = 'none'; // Masque l'image sélectionnée
   document.getElementById('picture-ajout').style.display = 'inline'; // Affiche "picture ajout"
-  checkAllFieldsFilled(); // Vérifie à nouveau si tous les champs sont remplis
+  checkAllFieldsOK(); // Vérifie à nouveau si tous les champs sont remplis
 }
 
 // Ajout de l'écouteur d'événement sur la soumission du formulaire
@@ -230,7 +234,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     },
     body: formData
   })
-    .then(newWork => {
+    .then(() => {
       opengallery(); // ouvre la modale "gallery"
       showPhotoModal(); // affiche les elements dans la modale
       showWorks(); // affiche les elements dans la gallery
@@ -255,17 +259,16 @@ gallery_modale.addEventListener('click', (event) => {
 });
 
 // Fonction pour supprimer un Element de l'api
-async function deleteWork(id) {
+function deleteWork(id) {
   const token = localStorage.getItem('token'); // récupère le token en local
-  const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+  fetch(`http://localhost:5678/api/works/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`
     }
-  });
-
-  const supprimOkid = document.getElementById('supprimOK');
-
+  })
+    .then((response) => {
+      const supprimOkid = document.getElementById('supprimOK');
   if (response.ok) { // message de réussite
     supprimOkid.innerHTML = `
       <span>L'élément ${id} a bien été supprimé.</span>
@@ -280,19 +283,23 @@ async function deleteWork(id) {
     okButton.addEventListener("click", () => {
       supprimOkid.classList.add("hide-error"); // Ajouter la class "hide-error" (display none)
     });
-
-  } else { // message d'erreur
-
-    supprimOkid.innerHTML = `
-      <span>Erreur lors de la suppression de l'élément ${id}</span>
-      <span class="supprim-close" id="supprim-bouton">OK</span>
-    `;
-    supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
-    const okButton = document.querySelector('#supprim-bouton');
-
-    //supprimer le message au click sur "ok"
-    okButton.addEventListener("click", () => {
-      supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error" (display none)
-    });
   }
+})
+.catch((error) => {
+  const supprimOkid = document.getElementById('supprimOK');
+  supprimOkid.innerHTML = `
+    <span> Erreur lors de la suppression de l'élément ${id} </span>
+    <span class="supprim-close" id="supprim-bouton">OK</span>
+  `;
+  supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
+
+  const okButton = document.querySelector('#supprim-bouton');
+  // Supprimer le message au clic sur "OK"
+  okButton.addEventListener("click", () => {
+    supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error" (display none)
+  });
+});
 }
+  
+
+ 
