@@ -22,6 +22,7 @@ function changeLogin() {
   loginLink.addEventListener("click", function () {
     // Efface l'état de connexion du localStorage 
     localStorage.removeItem("connected");
+    localStorage.removeItem("token");
   });
 }
 
