@@ -239,12 +239,13 @@ function submitForm(){
     body: formData
   })
     .then(() => {
+      alert("l'article à été ajouté avec succés");
       opengallery(); // ouvre la modale "gallery"
       showPhotoModal(); // affiche les elements dans la modale
       showWorks(); // affiche les elements dans la gallery
     })
     .catch(error => {
-      console.error('Erreur lors de l\'ajout de l\'élément :', error);
+      alert('Erreur lors de l\'ajout de l\'élément :', error);
     });
   resetForm(); // Réinitialise le formulaire
 }
@@ -261,7 +262,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
   } catch (error) {
     errorContainer.innerHTML = `
     <span>${error.message}</span>
-    <button class="supprim-close">OK</button>
+    <span class="supprim-close">OK</span>
   `;
   errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
 
