@@ -384,6 +384,11 @@ li:hover,
 }
 /*----------- Gestion messages Formulaires */
 
+#errorContainer{
+	margin: 0;
+	padding: 0;
+}
+
 .show-error {
     margin: 10px 0 20px 0;
     color: #b1673cfe;
@@ -419,6 +424,7 @@ li:hover,
     margin-left: 5px;
     padding: 3px 6px;
   }
+
   .hide-error{
 	display: none;
   }

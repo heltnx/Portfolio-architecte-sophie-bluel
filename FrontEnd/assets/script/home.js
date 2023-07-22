@@ -27,9 +27,8 @@ function changeLogin() {
 }
 
 // Appel des fonctions pour activer les éléments d'édition
-changeLogin()
+window.addEventListener("load", changeLogin); // au chargement de la page
 openEdition();
-
 
 /* ---- récuperer et afficher dynamiquement les éléménts dans la gallery via l'api ---*/
 

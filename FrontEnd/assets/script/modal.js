@@ -65,7 +65,7 @@ const close_modal = function (event) {
   modal.removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale"
   modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale" sur le bouton
   modal = null; // Réinitialise la variable 'modal' à null
-  // redirection vers index.html
+  resetForm();
 };
 
 /* ouvrir la modale au click sur un lien des elements ayant cette class ".js-modal" */
@@ -82,6 +82,7 @@ document.getElementById("ajouter").addEventListener("click", function () {
 // click sur la flêche "retour" de la modale "ajout"
 document.getElementById("retour").addEventListener("click", function () {
   opengallery();
+  resetForm();
 });
 
 
@@ -179,12 +180,18 @@ const imageInput = document.getElementById('file-upload');
 const selectInput = document.getElementById('form-category')
 
 const validerButton = document.getElementById('valider');
+// Fonction de réinitialisation de l'erreur
+function resetError() {
+  errorContainer.classList.remove("show-error");
+  errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
+}
 
 // Fonction pour vérifier si tous les champs sont remplis
 function checkAllFieldsOK() {
   if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
     // Modifier la couleur du bouton si les champs sont remplis
     validerButton.style.backgroundColor = '#1D6154';
+    resetError()
   } else {
     // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
     validerButton.style.backgroundColor = '';
@@ -199,7 +206,7 @@ selectInput.addEventListener('input', checkAllFieldsOK);
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
-// Déclaration de la fonction pour réinitialiser les valeurs des champs du formulaire
+// Fonction pour réinitialiser les valeurs des champs du formulaire
 function resetForm() {
   document.getElementById('form-ajout').reset(); // Réinitialise le formulaire
   const selectedImage = document.getElementById('selected-image');
@@ -209,10 +216,7 @@ function resetForm() {
   checkAllFieldsOK(); // Vérifie à nouveau si tous les champs sont remplis
 }
 
-// Ajout de l'écouteur d'événement sur la soumission du formulaire
-document.getElementById('form-ajout').addEventListener('submit', function (event) {
-  event.preventDefault(); // Empêche la soumission du formulaire
-
+function submitForm(){
   // Récupère les valeurs du formulaire
   const title = document.getElementById('titre').value;
   const category = document.getElementById('form-category').value;
@@ -243,6 +247,27 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       console.error('Erreur lors de l\'ajout de l\'élément :', error);
     });
   resetForm(); // Réinitialise le formulaire
+}
+
+// Ajout de l'écouteur d'événement sur la soumission du formulaire
+document.getElementById('form-ajout').addEventListener('submit', function (event) {
+  event.preventDefault(); // Empêche la soumission du formulaire
+  try {
+    if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
+      submitForm();
+    } else {
+      throw new Error('Veuillez remplir tous les champs');
+    }
+  } catch (error) {
+    errorContainer.innerHTML = `
+    <span>${error.message}</span>
+    <button class="supprim-close">OK</button>
+  `;
+  errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
+
+  const errorCloseButton = errorContainer.querySelector(".supprim-close");
+  errorCloseButton.addEventListener("click", resetError);
+  }
 });
 
 
