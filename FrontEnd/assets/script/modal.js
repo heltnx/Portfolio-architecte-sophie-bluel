@@ -65,7 +65,6 @@ const close_modal = function (event) {
   modal.removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale"
   modal.querySelector('.js-modal-close').removeEventListener('click', close_modal); // Supprime le clic pour "fermer la modale" sur le bouton
   modal = null; // Réinitialise la variable 'modal' à null
-  resetForm();
 };
 
 /* ouvrir la modale au click sur un lien des elements ayant cette class ".js-modal" */
@@ -77,12 +76,13 @@ document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les �
 // click sur le bouton "Ajouter" dans la première modale
 document.getElementById("ajouter").addEventListener("click", function () {
   openform();
+  resetForm();
+  resetError();
 });
 
 // click sur la flêche "retour" de la modale "ajout"
 document.getElementById("retour").addEventListener("click", function () {
   opengallery();
-  resetForm();
 });
 
 
