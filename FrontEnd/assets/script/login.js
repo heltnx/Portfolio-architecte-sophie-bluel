@@ -51,6 +51,5 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
 
 // Fonction de réinitialisation de l'erreur
 function resetError() {
-  errorContainer.classList.remove("show-error");
   errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
 }

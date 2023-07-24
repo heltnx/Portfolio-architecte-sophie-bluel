@@ -181,8 +181,12 @@ const selectInput = document.getElementById('form-category')
 
 const validerButton = document.getElementById('valider');
 // Fonction de réinitialisation de l'erreur
+
+function errorGestion(){errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
+    const errorCloseButton = errorContainer.querySelector(".supprim-close");
+    errorCloseButton.addEventListener("click", resetError)};
+
 function resetError() {
-  errorContainer.classList.remove("show-error");
   errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
 }
 
@@ -239,9 +243,12 @@ function submitForm(){
     body: formData
   })
     .then(() => {
-      alert("l'article à été ajouté avec succés");
-      opengallery(); // ouvre la modale "gallery"
-      showPhotoModal(); // affiche les elements dans la modale
+      errorContainer.innerHTML = `
+      <span>"l'article à été ajouté avec succés"</span>
+      <span class="supprim-close">OK</span>
+    `;
+       errorGestion();
+       showPhotoModal(); // affiche les elements dans la modale
       showWorks(); // affiche les elements dans la gallery
     })
     .catch(error => {
@@ -264,10 +271,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     <span>${error.message}</span>
     <span class="supprim-close">OK</span>
   `;
-  errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
-
-  const errorCloseButton = errorContainer.querySelector(".supprim-close");
-  errorCloseButton.addEventListener("click", resetError);
+  errorGestion()
   }
 });
 
