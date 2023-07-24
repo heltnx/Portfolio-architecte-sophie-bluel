@@ -61,7 +61,7 @@ async function showWorks() {
 }
 
 // Appel de la fonction 'showWorks' 
-showWorks(); // affiche les données dans la galerie
+showWorks(); // affiche les données dans la galerie principale
 
 /** ---- ajout des "categories" ---- boutons filtres ----------------------------------------------*/
 
