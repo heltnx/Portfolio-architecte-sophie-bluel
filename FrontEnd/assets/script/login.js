@@ -39,17 +39,13 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
     .catch(error => {
       errorContainer.innerHTML = `
         <span>${error.message}</span>
-        <button class="error-close">OK</button>
+        <button class="supprim-close">OK</button>
       `;
-      errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
-
-      const errorCloseButton = errorContainer.querySelector(".error-close");
-      errorCloseButton.addEventListener("click", resetError);
+      errorGestion();
     });
-
 });
 
 // Fonction de réinitialisation de l'erreur
-function resetError() {
-  errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
-}
+resetError(); 
+ 
+

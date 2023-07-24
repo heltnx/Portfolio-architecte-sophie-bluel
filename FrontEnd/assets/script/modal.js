@@ -10,12 +10,12 @@ const divModalAjout = document.getElementById("ajout"); // modale 2 ajout
 // Fonction pour ajouter une classe d'un élément
 function addClass(element, className) {
   element.classList.add(className);
-}
+};
 
 // Fonction pour supprimer une classe d'un élément
 function removeClass(element, className) {
   element.classList.remove(className);
-}
+};
 
 // Fonction pour ouvrir la modale "gallery"
 function opengallery() {
@@ -23,7 +23,7 @@ function opengallery() {
   removeClass(divModalAjout, "active"); // supprime la class active
   removeClass(divModalGallery, "hidden"); // supprime le "display none"
   addClass(divModalGallery, "active"); // Ajoute le contenu de la modale "gallery"
-}
+};
 
 // Fonction pour ouvrir la modale "ajout"
 function openform() {
@@ -31,7 +31,7 @@ function openform() {
   removeClass(divModalGallery, "active"); // supprime la class active
   addClass(divModalAjout, "active"); // Ajoute le contenu de la modale "ajout"
   removeClass(divModalAjout, "hidden"); // supprime le "display none"
-}
+};
 
 // Fonction pour ouvrir la modale "principale" au click sur "modifier"
 const open_modal = function (event) {
@@ -129,7 +129,7 @@ showPhotoModal();
 /** ---- ajout des "categories" dans la liste selects ----------------------------------------------*/
 
 // fonction dans home.js récupère les categories dans l'api
-getcategories()
+getcategories();
 
 //fonction pour générer le modèle HTML d'une categorie
 function genererHTMLFormCategory(element) {
@@ -144,7 +144,7 @@ const form_category = document.querySelector("#form-category"); // Sélection du
 async function showFormCategory() {
   await getcategories();  // Appel de la fonction 'getworks' pour récupérer les données
   categories.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-    form_category.innerHTML += genererHTMLFormCategory(element) // Génére le contenu HTML pour chaque element
+    form_category.innerHTML += genererHTMLFormCategory(element); // Génére le contenu HTML pour chaque element
   });
 }
 
@@ -177,25 +177,16 @@ fileUpload.addEventListener("change", function (event) {
 // Sélection des champs du formulaire
 const titleInput = document.getElementById('titre');
 const imageInput = document.getElementById('file-upload');
-const selectInput = document.getElementById('form-category')
+const selectInput = document.getElementById('form-category');
 
 const validerButton = document.getElementById('valider');
-// Fonction de réinitialisation de l'erreur
-
-function errorGestion(){errorContainer.classList.add("show-error"); // Ajouter la classe "show-error"
-    const errorCloseButton = errorContainer.querySelector(".supprim-close");
-    errorCloseButton.addEventListener("click", resetError)};
-
-function resetError() {
-  errorContainer.innerHTML = ''; // Effacer le contenu de l'élément errorContainer
-}
 
 // Fonction pour vérifier si tous les champs sont remplis
 function checkAllFieldsOK() {
   if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
     // Modifier la couleur du bouton si les champs sont remplis
     validerButton.style.backgroundColor = '#1D6154';
-    resetError()
+    resetError();
   } else {
     // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
     validerButton.style.backgroundColor = '';
@@ -247,9 +238,9 @@ function submitForm(){
       <span>"l'article à été ajouté avec succés"</span>
       <span class="supprim-close">OK</span>
     `;
-       errorGestion();
+       errorGestion(); // 
        showPhotoModal(); // affiche les elements dans la modale
-      showWorks(); // affiche les elements dans la gallery
+       showWorks(); // affiche les elements dans la gallery
     })
     .catch(error => {
       alert('Erreur lors de l\'ajout de l\'élément :', error);
@@ -271,7 +262,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     <span>${error.message}</span>
     <span class="supprim-close">OK</span>
   `;
-  errorGestion()
+  errorGestion(); 
   }
 });
 
