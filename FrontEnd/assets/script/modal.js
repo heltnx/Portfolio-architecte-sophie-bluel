@@ -176,14 +176,13 @@ fileUpload.addEventListener("change", function (event) {
 
 // Sélection des champs du formulaire
 const titleInput = document.getElementById('titre');
-const imageInput = document.getElementById('file-upload');
 const selectInput = document.getElementById('form-category');
 
 const validerButton = document.getElementById('valider');
 
 // Fonction pour vérifier si tous les champs sont remplis
 function checkAllFieldsOK() {
-  if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
+  if (titleInput.value.trim() !== '' && fileUpload.files.length > 0 && selectInput.value !== '') {
     // Modifier la couleur du bouton si les champs sont remplis
     validerButton.style.backgroundColor = '#1D6154';
     resetError();
@@ -195,7 +194,7 @@ function checkAllFieldsOK() {
 
 // Écouter l'événement "input" pour les champs du formulaire
 titleInput.addEventListener('input', checkAllFieldsOK);
-imageInput.addEventListener('input', checkAllFieldsOK);
+fileUpload.addEventListener('input', checkAllFieldsOK);
 selectInput.addEventListener('input', checkAllFieldsOK);
 
 
@@ -204,7 +203,6 @@ selectInput.addEventListener('input', checkAllFieldsOK);
 // Fonction pour réinitialiser les valeurs des champs du formulaire
 function resetForm() {
   document.getElementById('form-ajout').reset(); // Réinitialise le formulaire
-  const selectedImage = document.getElementById('selected-image');
   selectedImage.src = ''; // Réinitialise l'image sélectionnée
   selectedImage.style.display = 'none'; // Masque l'image sélectionnée
   document.getElementById('picture-ajout').style.display = 'inline'; // Affiche "picture ajout"
@@ -213,9 +211,9 @@ function resetForm() {
 
 function submitForm(){
   // Récupère les valeurs du formulaire
-  const title = document.getElementById('titre').value;
-  const category = document.getElementById('form-category').value;
-  const image = document.getElementById('file-upload').files[0];
+  const title = titleInput.value;
+  const category = selectInput.value;
+  const image = fileUpload.files[0];
 
   // Crée un objet FormData pour envoyer les données multipart/form-data
   const formData = new FormData();
@@ -252,7 +250,7 @@ function submitForm(){
 document.getElementById('form-ajout').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
   try {
-    if (titleInput.value.trim() !== '' && imageInput.files.length > 0 && selectInput.value !== '') {
+    if (titleInput.value.trim() !== '' && fileUpload.files.length > 0 && selectInput.value !== '') {
       submitForm();
     } else {
       throw new Error('Veuillez remplir tous les champs');
@@ -281,7 +279,7 @@ gallery_modale.addEventListener('click', (event) => {
 
 // Fonction pour supprimer un Element de l'api
 function deleteWork(id) {
-  const token = localStorage.getItem('token'); // récupère le token en local
+  token = localStorage.getItem('token'); // récupère le token en local
   fetch(`http://localhost:5678/api/works/${id}`, {
     method: 'DELETE',
     headers: {
