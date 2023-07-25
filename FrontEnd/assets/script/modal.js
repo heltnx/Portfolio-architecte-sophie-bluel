@@ -200,6 +200,8 @@ selectInput.addEventListener('input', checkAllFieldsOK);
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
+  const token = localStorage.getItem('token'); // recupere le token
+
 // Fonction pour réinitialiser les valeurs des champs du formulaire
 function resetForm() {
   document.getElementById('form-ajout').reset(); // Réinitialise le formulaire
@@ -221,9 +223,7 @@ function submitForm() {
   formData.append('title', title);
   formData.append('category', category);
 
-  // Envoie une requête POST à l'API pour ajouter un nouvel Element
-  const token = localStorage.getItem('token');
-
+ // Envoie une requête POST à l'API pour ajouter un nouvel Element
   fetch('http://localhost:5678/api/works', {
     method: 'POST',
     headers: {
@@ -277,7 +277,6 @@ gallery_modale.addEventListener('click', (event) => {
 
 // Fonction pour supprimer un Element de l'api
 function deleteWork(id) {
-  token = localStorage.getItem('token'); // récupère le token en local
   fetch(`http://localhost:5678/api/works/${id}`, {
     method: 'DELETE',
     headers: {
@@ -294,7 +293,7 @@ function deleteWork(id) {
         supprimOkid.classList.add("show-error"); // Ajouter la class "show-error"
 
         showPhotoModal(); // affiche la gallery dans la modale
-        showWorks();
+        showWorks(); // affiche les éléments dans la gallery principale
         //supprimer le message au click sur "ok"
         const okButton = document.querySelector('#supprim-bouton');
         okButton.addEventListener("click", () => {
