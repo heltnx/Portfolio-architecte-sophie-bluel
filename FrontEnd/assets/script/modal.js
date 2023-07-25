@@ -209,7 +209,7 @@ function resetForm() {
   checkAllFieldsOK(); // Vérifie à nouveau si tous les champs sont remplis
 }
 
-function submitForm(){
+function submitForm() {
   // Récupère les valeurs du formulaire
   const title = titleInput.value;
   const category = selectInput.value;
@@ -236,9 +236,9 @@ function submitForm(){
       <span>"l'article à été ajouté avec succés"</span>
       <span class="supprim-close">OK</span>
     `;
-       errorGestion(); // 
-       showPhotoModal(); // affiche les elements dans la modale
-       showWorks(); // affiche les elements dans la gallery
+      errorGestion(); // 
+      showPhotoModal(); // affiche les elements dans la modale
+      showWorks(); // affiche les elements dans la gallery
     })
     .catch(error => {
       alert('Erreur lors de l\'ajout de l\'élément :', error);
@@ -260,11 +260,9 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     <span>${error.message}</span>
     <span class="supprim-close">OK</span>
   `;
-  errorGestion(); 
+    errorGestion();
   }
 });
-
-
 
 /** ---- supprim Element de l'api DELETE Methode----------------------------------------------*/
 
@@ -288,37 +286,37 @@ function deleteWork(id) {
   })
     .then((response) => {
       const supprimOkid = document.getElementById('supprimOK');
-  if (response.ok) { // message de réussite
-    supprimOkid.innerHTML = `
+      if (response.ok) { // message de réussite
+        supprimOkid.innerHTML = `
       <span>L'élément ${id} a bien été supprimé.</span>
       <span class="supprim-close" id="supprim-bouton">OK</span>
     `;
-    supprimOkid.classList.add("show-error"); // Ajouter la class "show-error"
+        supprimOkid.classList.add("show-error"); // Ajouter la class "show-error"
 
-    showPhotoModal(); // affiche la gallery dans la modale
-    showWorks();
-    //supprimer le message au click sur "ok"
-    const okButton = document.querySelector('#supprim-bouton');
-    okButton.addEventListener("click", () => {
-      supprimOkid.classList.add("hide-error"); // Ajouter la class "hide-error" (display none)
-    });
-  }
-})
-.catch((error) => {
-  const supprimOkid = document.getElementById('supprimOK');
-  supprimOkid.innerHTML = `
+        showPhotoModal(); // affiche la gallery dans la modale
+        showWorks();
+        //supprimer le message au click sur "ok"
+        const okButton = document.querySelector('#supprim-bouton');
+        okButton.addEventListener("click", () => {
+          supprimOkid.classList.add("hide-error"); // Ajouter la class "hide-error" (display none)
+        });
+      }
+    })
+    .catch((error) => {
+      const supprimOkid = document.getElementById('supprimOK');
+      supprimOkid.innerHTML = `
     <span> Erreur lors de la suppression de l'élément ${id} </span>
     <span class="supprim-close" id="supprim-bouton">OK</span>
   `;
-  supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
+      supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
 
-  const okButton = document.querySelector('#supprim-bouton');
-  // Supprimer le message au clic sur "OK"
-  okButton.addEventListener("click", () => {
-    supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error" (display none)
-  });
-});
+      const okButton = document.querySelector('#supprim-bouton');
+      // Supprimer le message au clic sur "OK"
+      okButton.addEventListener("click", () => {
+        supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error" (display none)
+      });
+    });
 }
-  
 
- 
+
+

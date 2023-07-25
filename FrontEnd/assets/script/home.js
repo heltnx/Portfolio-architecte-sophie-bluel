@@ -21,8 +21,8 @@ function changeLogin() {
   // lors du clic sur le lien de déconnexion
   loginLink.addEventListener("click", function () {
     if (connected === "true") {
-    // Efface l'état de connexion du localStorage 
-    localStorage.clear();
+      // Efface l'état de connexion du localStorage 
+      localStorage.clear();
     }
   });
 }
@@ -91,7 +91,7 @@ async function showcategories() {
 }
 
 // Appel de la fonction 'showcategories' 
- if (localStorage.length === 0){
+if (localStorage.length === 0) {
   showcategories(); // affiche les données dans la galerie
 }
 
