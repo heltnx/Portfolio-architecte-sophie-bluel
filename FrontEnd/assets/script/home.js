@@ -20,9 +20,10 @@ function changeLogin() {
   loginLink.innerText = connected ? "Logout" : "Login";
   // lors du clic sur le lien de déconnexion
   loginLink.addEventListener("click", function () {
+    if (connected === "true") {
     // Efface l'état de connexion du localStorage 
-    localStorage.removeItem("connected");
-    localStorage.removeItem("token");
+    localStorage.clear();
+    }
   });
 }
 
@@ -56,7 +57,7 @@ async function showWorks() {
   gallery.innerHTML = ""; // Vide le contenu de la galerie
   await getworks();  // Appel de la fonction 'getworks' pour récupérer les données
   works.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-    gallery.innerHTML += genererHTML(element) // Génére le contenu HTML pour chaque element
+    gallery.innerHTML += genererHTML(element); // Génére le contenu HTML pour chaque element
   });
 }
 
@@ -85,12 +86,15 @@ const filtres = document.querySelector(".filtres"); // Sélection du 1er éléme
 async function showcategories() {
   await getcategories();  // Appel de la fonction 'getworks' pour récupérer les données
   categories.forEach(element => {  // Parcours de chaque élément dans le tableau 'works'
-    filtres.innerHTML += genererHTMLcategories(element) // Génére le contenu HTML pour chaque element
+    filtres.innerHTML += genererHTMLcategories(element); // Génére le contenu HTML pour chaque element
   });
 }
 
 // Appel de la fonction 'showcategories' 
-showcategories(); // affiche les données dans la galerie
+ if (localStorage.length === 0){
+  showcategories(); // affiche les données dans la galerie
+}
+
 
 /**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
 
@@ -103,7 +107,7 @@ function filterworks(event) {
   // Générer le contenu HTML pour les éléments filtrés
   let galleryHTML = ""; // initialise une gallery vide
   categorie.forEach(element => { // Parcourt les éléments filtrés 
-    galleryHTML += genererHTML(element) // génère le contenu HTML correspondant à chaque élément.
+    galleryHTML += genererHTML(element); // génère le contenu HTML correspondant à chaque élément.
   });
 
   // Mettre à jour le contenu de la galerie avec les éléments filtrés
