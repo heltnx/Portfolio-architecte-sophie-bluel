@@ -46,6 +46,6 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
 });
 
 // Fonction de réinitialisation de l'erreur
-resetError(); 
- 
+resetError();
+
 

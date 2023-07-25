@@ -95,7 +95,6 @@ if (localStorage.length === 0) {
   showcategories(); // affiche les données dans la galerie
 }
 
-
 /**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
 
 function filterworks(event) {
