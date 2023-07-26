@@ -17,7 +17,7 @@ function openEdition() {
 function changeLogin() {
   const loginLink = document.getElementById("login-link");
   // connected ? si vrai logout : si faux login
-  loginLink.innerText = connected ? "Logout" : "Login";
+  loginLink.innerText = connected ? "logout" : "login";
   // lors du clic sur le lien de déconnexion
   loginLink.addEventListener("click", function () {
     if (connected === "true") {

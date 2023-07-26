@@ -77,7 +77,7 @@ document.querySelectorAll('.js-modal').forEach(a => { // Sélectionne tous les �
 document.getElementById("ajouter").addEventListener("click", function () {
   openform();
   resetForm();
-  resetError();
+  resetMessage(messageContainerAjout);
 });
 
 // click sur la flêche "retour" de la modale "ajout"
@@ -119,7 +119,7 @@ function showPhotoModal() {
       });
     })
     .catch(error => {
-      console.error("Une erreur s'est produite lors du chargement des œuvres :", error);
+      console.error("Une erreur s'est produite lors du chargement:", error);
     });
 }
 
@@ -185,7 +185,7 @@ function checkAllFieldsOK() {
   if (titleInput.value.trim() !== '' && fileUpload.files.length > 0 && selectInput.value !== '') {
     // Modifier la couleur du bouton si les champs sont remplis
     validerButton.style.backgroundColor = '#1D6154';
-    resetError();
+    resetMessage(messageContainerAjout);
   } else {
     // Réinitialiser la couleur du bouton si les champs ne sont pas tous remplis
     validerButton.style.backgroundColor = '';
@@ -200,7 +200,7 @@ selectInput.addEventListener('input', checkAllFieldsOK);
 
 /** ---- submit formulaire ajout ----------------------------------------------*/
 
-  const token = localStorage.getItem('token'); // recupere le token
+const token = localStorage.getItem('token'); // recupere le token
 
 // Fonction pour réinitialiser les valeurs des champs du formulaire
 function resetForm() {
@@ -223,7 +223,8 @@ function submitForm() {
   formData.append('title', title);
   formData.append('category', category);
 
- // Envoie une requête POST à l'API pour ajouter un nouvel Element
+  // Envoie une requête POST à l'API pour ajouter un nouvel Element
+
   fetch('http://localhost:5678/api/works', {
     method: 'POST',
     headers: {
@@ -232,18 +233,20 @@ function submitForm() {
     body: formData
   })
     .then(() => {
-      errorContainer.innerHTML = `
-      <span>"l'article à été ajouté avec succés"</span>
+      messageContainerAjout.innerHTML = `
+      <span class="show-error">"l'article à été ajouté avec succés"</span>
       <span class="supprim-close">OK</span>
     `;
-      errorGestion(); // 
+      messageGestion(messageContainerAjout);
       showPhotoModal(); // affiche les elements dans la modale
       showWorks(); // affiche les elements dans la gallery
+      resetForm(); // Réinitialise le formulaire
     })
+
+
     .catch(error => {
       alert('Erreur lors de l\'ajout de l\'élément :', error);
     });
-  resetForm(); // Réinitialise le formulaire
 }
 
 // Ajout de l'écouteur d'événement sur la soumission du formulaire
@@ -256,11 +259,11 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
       throw new Error('Veuillez remplir tous les champs');
     }
   } catch (error) {
-    errorContainer.innerHTML = `
-    <span>${error.message}</span>
-    <span class="supprim-close">OK</span>
+    messageContainerAjout.innerHTML = `
+    <span class="show-error">${error.message}</span>
+     <span class="supprim-close">OK</span>
   `;
-    errorGestion();
+    messageGestion(messageContainerAjout);
   }
 });
 
@@ -284,38 +287,25 @@ function deleteWork(id) {
     }
   })
     .then((response) => {
-      const supprimOkid = document.getElementById('supprimOK');
-      if (response.ok) { // message de réussite
-        supprimOkid.innerHTML = `
-      <span>L'élément ${id} a bien été supprimé.</span>
-      <span class="supprim-close" id="supprim-bouton">OK</span>
-    `;
-        supprimOkid.classList.add("show-error"); // Ajouter la class "show-error"
 
+      if (response.ok) { // message de réussite
+        messageContainer.innerHTML = `
+        <span>L'élément ${id} a bien été supprimé.</span>
+        <span class="supprim-close">OK</span>
+      `;
+        messageGestion(messageContainer); // Fonction de gestion des messages
         showPhotoModal(); // affiche la gallery dans la modale
         showWorks(); // affiche les éléments dans la gallery principale
-        //supprimer le message au click sur "ok"
-        const okButton = document.querySelector('#supprim-bouton');
-        okButton.addEventListener("click", () => {
-          supprimOkid.classList.add("hide-error"); // Ajouter la class "hide-error" (display none)
-        });
       }
     })
     .catch((error) => {
-      const supprimOkid = document.getElementById('supprimOK');
-      supprimOkid.innerHTML = `
+      messageContainer.innerHTML = `
     <span> Erreur lors de la suppression de l'élément ${id} </span>
-    <span class="supprim-close" id="supprim-bouton">OK</span>
+    <span class="supprim-close">OK</span>
   `;
-      supprimOkid.classList.add("show-error"); // Ajouter la classe "show-error"
-
-      const okButton = document.querySelector('#supprim-bouton');
-      // Supprimer le message au clic sur "OK"
-      okButton.addEventListener("click", () => {
-        supprimOkid.classList.add("hide-error"); // Ajouter la classe "hide-error" (display none)
-      });
+      messageGestion(messageContainer); // Fonction de gestion des messages
     });
-}
+};
 
 
 

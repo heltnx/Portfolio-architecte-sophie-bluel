@@ -37,15 +37,15 @@ document.querySelector('#loginForm').addEventListener('submit', function (event)
     /*--- gestion du message d'erreur ---*/
 
     .catch(error => {
-      errorContainer.innerHTML = `
+      messageContainer.innerHTML = `
         <span>${error.message}</span>
         <button class="supprim-close">OK</button>
       `;
-      errorGestion();
+      messageGestion(messageContainer) // Fonction de gestion des messages
     });
 });
 
 // Fonction de réinitialisation de l'erreur
-resetError();
+resetMessage(messageContainer);
 
 

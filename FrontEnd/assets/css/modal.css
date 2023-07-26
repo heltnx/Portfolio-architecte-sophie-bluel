@@ -186,7 +186,7 @@ hr {
     align-items: center;
     padding: 10px 0;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #model-picture {
@@ -271,7 +271,7 @@ hr {
 
 #ajout form hr {
     width: 100%;
-    margin: 50px 0;
+    margin: 30px 0;
 }
 
 #valider {
@@ -286,6 +286,7 @@ hr {
     font-size: 14px;
     font-family: 'Syne', sans-serif;
     font-weight: 700;
+
 }
 
 /*------------------------------------*/
