@@ -249,6 +249,7 @@ function submitForm() {
     });
 }
 
+
 // Ajout de l'écouteur d'événement sur la soumission du formulaire
 document.getElementById('form-ajout').addEventListener('submit', function (event) {
   event.preventDefault(); // Empêche la soumission du formulaire
