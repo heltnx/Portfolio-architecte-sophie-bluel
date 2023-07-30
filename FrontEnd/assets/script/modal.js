@@ -270,9 +270,9 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
 // Gestionnaire d'événement pour le clic sur l'icône de corbeille
 gallery_modale.addEventListener('click', (event) => {
   if (event.target.classList.contains('trash')) { // cible les elements "trash"
-    const id = event.target.getAttribute('data-index'); // récupère l id de lelement cliqué
+    const id = event.target.getAttribute('data-index'); // récupère l'id de l'élement cliqué
     event.preventDefault();
-    deleteWork(id);
+    deleteWork(id); // supprime l'élément
   }
 });
 
