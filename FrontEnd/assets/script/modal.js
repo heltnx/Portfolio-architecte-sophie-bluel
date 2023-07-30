@@ -111,7 +111,7 @@ function genererHTMLmodale(element, index) {
 const gallery_modale = document.querySelector(".gallery-edit"); // Sélection du 1er élément HTML de la classe 'gallery-edit'
 
 function showPhotoModal() {
-  getworks()
+  getworks() // récupère les éléments dans l'api
     .then(() => {
       gallery_modale.innerHTML = ''; // Réinitialiser la galerie en vidant son contenu existant
       works.forEach((element, index) => {
@@ -259,7 +259,7 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
     } else {
       throw new Error('Veuillez remplir tous les champs');
     }
-  } catch (error) {
+  } catch (error) { //récupère l'error
     messageContainerAjout.innerHTML = `
     <span class="show-error">${error.message}</span>
      <span class="supprim-close">OK</span>

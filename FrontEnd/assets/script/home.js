@@ -100,7 +100,7 @@ if (localStorage.length === 0) {
 function filterworks(event) {
   const categoryId = event.target.id; // Cible l'ID de la catégorie cliquée
 
-  // Cible les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId == 0)
+  // Cible les éléments avec la même (categoryId) que celle cliquée ou tous les éléments (si categoryId = 0)
   const categorie = works.filter(element => element.categoryId == categoryId || categoryId == 0);
 
   // Générer le contenu HTML pour les éléments filtrés
