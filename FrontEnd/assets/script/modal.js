@@ -242,13 +242,10 @@ function submitForm() {
       showWorks(); // affiche les elements dans la gallery
       resetForm(); // Réinitialise le formulaire
     })
-
-
     .catch(error => {
       alert('Erreur lors de l\'ajout de l\'élément :', error);
     });
 }
-
 
 // Ajout de l'écouteur d'événement sur la soumission du formulaire
 document.getElementById('form-ajout').addEventListener('submit', function (event) {
@@ -272,8 +269,8 @@ document.getElementById('form-ajout').addEventListener('submit', function (event
 
 // Gestionnaire d'événement pour le clic sur l'icône de corbeille
 gallery_modale.addEventListener('click', (event) => {
-  if (event.target.classList.contains('trash')) {
-    const id = event.target.getAttribute('data-index');
+  if (event.target.classList.contains('trash')) { // cible les elements "trash"
+    const id = event.target.getAttribute('data-index'); // récupère l id de lelement cliqué
     event.preventDefault();
     deleteWork(id);
   }
