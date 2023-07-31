@@ -186,6 +186,22 @@ article {
 	margin-right: 30px;
 }
 
+#pub {
+	width: 216px;
+	height: 38px;
+	flex-shrink: 0;
+	border: transparent;
+	border-radius: 60px;
+	background: #FFF;
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
 .modif {
 	cursor: pointer;
 	position: relative;
@@ -219,7 +235,7 @@ header {
 }
 
 section {
-	margin:40px 0
+	margin: 40px 0
 }
 
 h1 {
@@ -235,7 +251,7 @@ h1 span {
 	font-family: 'Work Sans';
 	font-size: 10px;
 	letter-spacing: 0.1em;
-	line-height:20px ;
+	line-height: 20px;
 	margin-bottom: 80px;
 	text-transform: uppercase;
 }
@@ -330,7 +346,7 @@ li:hover,
 	line-height: normal;
 }
 
-#portfolio{
+#portfolio {
 	margin-top: 10px;
 }
 
@@ -346,7 +362,7 @@ li:hover,
 	text-align: center;
 }
 
-.filtres-hidden{
+.filtres-hidden {
 	display: none;
 }
 
@@ -382,35 +398,36 @@ li:hover,
 .gallery img {
 	width: 100%;
 }
+
 /*----------- Gestion messages Formulaires */
 
-.messageContainer{
+.messageContainer {
 	margin: 0;
 	padding: 0;
 }
 
 .show-error {
-    margin: 10px 0 10px 0;
-    color: #b1673cfe;
-    padding: 10px;
-    font-family: 'Work Sans';
-    font-weight: 800;
-    font-size: 16px;
+	margin: 10px 0 10px 0;
+	color: #b1673cfe;
+	padding: 10px;
+	font-family: 'Work Sans';
+	font-weight: 800;
+	font-size: 16px;
 	z-index: 5;
-  }
+}
 
-  .supprim-close{
-	background-color:#1D6154 ;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-left: 5px;
-    padding: 3px 6px;
-  }
+.supprim-close {
+	background-color: #1D6154;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-left: 5px;
+	padding: 3px 6px;
+}
 
 /*---- formulaire de contact -------------*/
 
@@ -469,19 +486,22 @@ footer {
 	width: 100%;
 	background-color: #fff;
 	margin-top: 30px;
-  }
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 }
-footer nav{
+
+footer nav {
 	max-width: 80%;
 	margin: 2em auto;
 }
-footer li{
-font-family: "Work Sans";
-font-size: 14px;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
+
+footer li {
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 300;
+	line-height: normal;
 }
