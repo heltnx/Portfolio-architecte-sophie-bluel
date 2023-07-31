@@ -292,7 +292,7 @@ function deleteWork(id) {
         <span class="supprim-close">OK</span>
       `;
         messageGestion(messageContainer); // Fonction de gestion des messages
-        showPhotoModal(); // affiche la gallery dans la modale
+        showPhotoModal(); // affiche les éléments dans la gallery dans la modale
         showWorks(); // affiche les éléments dans la gallery principale
       }
     })
