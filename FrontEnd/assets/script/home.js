@@ -81,7 +81,7 @@ function genererHTMLcategories(element) {
 }
 
 // fonction pour afficher les filtres 
-const filtres = document.querySelector(".filtres"); // Sélection du 1er élément HTML de la class 'gallery'
+const filtres = document.querySelector(".filtres");
 
 async function showcategories() {
   await getcategories();  // Appel de la fonction 'getworks' pour récupérer les données
