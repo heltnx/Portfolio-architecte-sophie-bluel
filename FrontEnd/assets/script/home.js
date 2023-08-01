@@ -92,7 +92,7 @@ async function showcategories() {
 
 // Appel de la fonction 'showcategories' 
 if (localStorage.length === 0) {
-  showcategories(); // affiche les données dans la galerie
+  showcategories(); // affiche les boutons dans la galerie
 }
 
 /**  Gestion du Filtrage au click sur les boutons -----------------------------------*/
