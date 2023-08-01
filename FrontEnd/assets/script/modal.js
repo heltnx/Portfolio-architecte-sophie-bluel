@@ -232,7 +232,7 @@ function submitForm() {
     },
     body: formData
   })
-    .then(() => {
+    .then(() => { //message succes
       messageContainerAjout.innerHTML = `
       <span class="show-error">"l'article à été ajouté avec succés"</span>
       <span class="supprim-close">OK</span>
